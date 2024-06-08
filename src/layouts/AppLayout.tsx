@@ -1,8 +1,7 @@
 import React, { ReactNode, cloneElement, ReactElement } from "react";
+import { AppLayoutProps } from "../types/AppLayoutProps";
 
-interface AppLayoutProps {
-    children: ReactNode;
-}
+
 
 function AppLayout({ children }: AppLayoutProps): React.JSX.Element {
     return (
