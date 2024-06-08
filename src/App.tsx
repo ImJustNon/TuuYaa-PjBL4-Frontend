@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
@@ -8,7 +8,10 @@ import AppRouter from './routes/AppRouter';
 import Background from './components/Background';
 
 function App(): React.JSX.Element {
-	const [count, setCount] = useState<number>(0);
+
+	useEffect(() =>{
+		document.title = "Alerting Medicine Cabinet by Using IoT and Web Application's Setting Page | v2.0.0";
+	}, []);
 
 	return (
 		<>
