@@ -13,7 +13,7 @@ function App(): React.JSX.Element {
 	return (
 		<>
 			<ChakraProvider theme={theme}>
-				<Background/>
+				<Background />
 				<div className="relative">
 					<AppRouter />
 				</div>
