@@ -10,6 +10,7 @@
 	font-weight: 400;
 	font-style: normal;
 	/* font-family: 'Mali', cursive; */
+	/* @apply noselect; */
 }
 .set-bg {
 	width: 100%;
