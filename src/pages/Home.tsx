@@ -40,7 +40,7 @@ function Home(): React.JSX.Element {
                     </div>
                     {/* Scan btn zone */}
                     <div className="flex justify-center -mt-7 mb-4">
-                        <a href="#">
+                        <Link to="/scan">
                             <div className="flex items-center bg-[#add33f] p-1 rounded-full hover:bg-[#90b035] active:bg-[#809c2f] duration-300">
                                 <div className="bg-white h-12 w-12 rounded-full grid place-items-center">
                                     <span>
@@ -49,7 +49,7 @@ function Home(): React.JSX.Element {
                                 </div>
                                 <p className="px-4">Add Cabinet</p>
                             </div>
-                        </a>
+                        </Link>
                     </div>
                     {/* Menu zone */}
                     <div className="p-4">

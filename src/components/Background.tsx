@@ -1,6 +1,7 @@
+import React from "react";
 import bg from "../assets/images/hero-bg.gif";
 
-function Background(){
+function Background(): React.JSX.Element {
     return (
         <>
             <div className="fixed w-full">
