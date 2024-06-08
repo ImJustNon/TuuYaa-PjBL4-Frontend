@@ -16,9 +16,9 @@ function SignIn(): React.JSX.Element {
             <div className="min-h-screen flex flex-col items-center">
                 <div className="w-full flex flex-col grow bg-white md:max-w-md">
                     <div className="flex flex-col grow">
-                        <div className="flex flex-col grow items-center justify-center gap-5">
+                        <div className="flex flex-col grow items-center justify-center gap-10">
                             <img className="max-w-[60%]" src={sbtvc} alt="sbtvc" />
-                            <div className="text-center font-normal text-xl text-[#f9682f] px-16">
+                            <div className="text-center font-normal text-2xl text-[#f9682f] px-16 font-fchome">
                                 Alerting Medicine Cabinet by Using IoT and Web Application
                             </div>
                         </div>

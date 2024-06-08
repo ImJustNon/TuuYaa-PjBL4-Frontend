@@ -23,19 +23,22 @@
 	z-index: -1;
 }
 .font-itim {
-	font-family: 'Itim', cursive;
+	font-family: 'Itim', cursive !important; 
 }
 .font-playpen {
-	font-family: 'Playpen Sans', cursive;
+	font-family: 'Playpen Sans', cursive !important;
 }
 .font-prompt {
-	font-family: 'Prompt', sans-serif;
+	font-family: 'Prompt', sans-serif !important;
 }
 .font-sriracha {
-	font-family: 'Sriracha', cursive;
+	font-family: 'Sriracha', cursive !important;
 }
 .font-josefin {
-	font-family: 'Josefin Sans', sans-serif;
+	font-family: 'Josefin Sans', sans-serif !important;
+}
+.font-fchome {
+	font-family: "FcHome", sans-serif !important;
 }
 
 .noselect {
@@ -64,4 +67,9 @@
 ::-webkit-scrollbar-thumb:hover {
 	background: white;
 	border-radius: 50px;
+}
+
+@font-face {
+	font-family: "FcHome";
+	src: url("./assets/fonts/FC-Home/FC_Home_Regular.ttf") format('truetype');
 }
