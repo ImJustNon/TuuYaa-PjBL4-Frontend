@@ -12,12 +12,12 @@ function Home(): React.JSX.Element {
                         {/* Top menu btn */}
                         <div className="flex justify-between items-center">
                             <div className="flex flex-row bg-white rounded-full p-2 !px-4 gap-2 cursor-pointer hover:text-[#f76418] duration-300">
-                                <i className="fa-solid fa-gift fa-1x"></i>
-                                <span className="text-sm">เเลกรางวัล</span> 
+                                <i className="fa-solid fa-info fa-1x"></i>
+                                <span className="text-sm">Informations</span> 
                             </div>
-                            <div className="flex flex-row bg-white rounded-full p-2 gap-2 cursor-pointer hover:text-[#f76418] duration-300">
+                            <Link to={"/signin"} className="flex flex-row bg-white rounded-full p-2 gap-2 cursor-pointer hover:text-[#f76418] duration-300">
                                 <i className="fa-solid fa-right-from-bracket fa-1x"></i>
-                            </div>
+                            </Link>
                         </div>
                         {/* Profile zone */}
                         <div className="flex justify-center">
