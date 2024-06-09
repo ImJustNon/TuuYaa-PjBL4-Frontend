@@ -26,8 +26,7 @@ function App(): React.JSX.Element {
 		const userToken: string | undefined = getUserToken();
 		if(preventCheckPages.includes(pathname)) return;
 		if(!userToken){
-			setTimeout(() => navigate("/signin"), 100);
-			// navigate("/signin");
+			navigate("/signin");
 		}
 	}, [pathname]);
 
