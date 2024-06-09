@@ -28,7 +28,7 @@ function App(): React.JSX.Element {
 		if(!userToken){
 			navigate("/signin");
 		}
-	}, [pathname]);
+	}, []);
 
 	return (
 		<>
