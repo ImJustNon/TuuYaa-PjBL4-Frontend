@@ -25,30 +25,40 @@ function SignIn(): React.JSX.Element {
         console.info(errorResponse);
     }
     async function googleLoginOnSuccess(successResponse: Omit<TokenResponse, "error" | "error_description" | "error_uri">): Promise<void> {
-        axios.defaults.withCredentials = true;
-        const response: AxiosResponse = await axios.post(`${config.backend.api.baseurl}/api/v1/user/auth/google/auth/callback`, {
-            accessToken: successResponse.access_token,
-        }, {
-            headers: {
-              'Content-Type': 'application/json'
-            }
-        });
-        console.info(response.data?.message);
-        if(response.data?.status === "OK"){
-            toast({
-                status: "success",
-                description: "Signin Success",
-                position: "top",
+        try {
+            axios.defaults.withCredentials = true;
+            const response: AxiosResponse = await axios.post(`${config.backend.api.baseurl}/api/v1/user/auth/google/auth/callback`, {
+                accessToken: successResponse.access_token,
+            }, {
+                headers: {
+                  'Content-Type': 'application/json'
+                }
             });
-            navigate("/");
+            console.info(response.data?.message);
+            if(response.data?.status === "OK"){
+                toast({
+                    status: "success",
+                    description: "Signin Success",
+                    position: "top",
+                });
+                navigate("/");
+            }
+            else {
+                toast({
+                    status: "error",
+                    description: "Signin Error",
+                    position: "top",
+                });
+                console.info(response.data);
+            }
         }
-        else {
+        catch(e){
             toast({
                 status: "error",
                 description: "Signin Error",
                 position: "top",
             });
-            console.info(response.data);
+            console.info(e);
         }
     }
 
