@@ -3,20 +3,40 @@ import sbtvc from "../assets/images/sbtvcwithname.jpg";
 import googleIconSVG from "../assets/images/google-icon.svg";
 import axios from "axios";
 import { TokenResponse, useGoogleLogin } from "@react-oauth/google";
+import { useToast } from "@chakra-ui/react";
+import { getUserToken, removeUserToken } from "../utils/userToken";
 
 function SignIn(): React.JSX.Element {
+    const toast = useToast();
 
     const googleLogin = useGoogleLogin({
-        onSuccess: async(tokenResponse) => console.log(tokenResponse),
-        onError: errorResponse => console.log(errorResponse),
+        onSuccess: googleLoginOnSuccess,
+        onError: googleLoginOnError
     });
+    function googleLoginOnError(errorResponse: Pick<TokenResponse, "error" | "error_description" | "error_uri">): void {
+        toast({
+            status: "error",
+            description: "Login Error",
+            position: "top",
+        });
+        console.info(errorResponse);
+    }
+    async function googleLoginOnSuccess(successResponse: Omit<TokenResponse, "error" | "error_description" | "error_uri">): Promise<void> {
+        
+        toast({
+            status: "success",
+            description: "Login Success",
+            position: "top",
+        });
+    }
+
 
     return (
         <>
             <div className="min-h-screen flex flex-col items-center">
                 <div className="w-full flex flex-col grow bg-white md:max-w-md">
                     <div className="flex flex-col grow">
-                        <div className="flex flex-col grow items-center justify-center gap-10">
+                        <div className="flex flex-col grow items-center justify-center gap-5">
                             <img className="max-w-[60%]" src={sbtvc} alt="sbtvc" />
                             <div className="text-center font-normal text-2xl text-[#f9682f] px-16 font-fchome">
                                 Alerting Medicine Cabinet by Using IoT and Web Application
@@ -24,7 +44,7 @@ function SignIn(): React.JSX.Element {
                         </div>
                         <div className="bg-gradient-to-b from-[#f76418] to-[#c74605] p-8 py-12 rounded-t-3xl">
                             <div className="text-center text-white font-semibold mb-6">Sign-in Options</div>
-                            <a onClick={() => googleLogin()}>
+                            <div onClick={() => googleLogin()}> {/*Google Login Button*/}
                                 <div className="flex flex-row justify-center items-center gap-2 bg-white text-black py-4 rounded-xl hover:bg-gray-300 active:bg-gray-400 duration-300 cursor-pointer">
                                     <span>
                                         <img className="h-7" src={googleIconSVG} alt="google_signin" />
@@ -33,7 +53,7 @@ function SignIn(): React.JSX.Element {
                                         Continue with Google
                                     </span>
                                 </div>
-                            </a>
+                            </div>
                         </div>
                     </div>
                 </div>

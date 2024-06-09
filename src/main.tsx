@@ -4,11 +4,12 @@ import App from './App.tsx';
 import { BrowserRouter } from "react-router-dom";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import config from "./config/config";
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 	<React.StrictMode>
 		<HelmetProvider>
-			<GoogleOAuthProvider clientId='175992254880-5ch1eesii181r7plltatqce87imaekq9.apps.googleusercontent.com'>
+			<GoogleOAuthProvider clientId={config.googleClientId}>
 				<BrowserRouter>
 					<App />
 				</BrowserRouter>
