@@ -6,13 +6,13 @@ import { ChakraProvider } from "@chakra-ui/react";
 import theme from './config/theme';
 import AppRouter from './routes/AppRouter';
 import Background from './components/Background';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { NavigateFunction, useLocation, useNavigate } from 'react-router-dom';
 import config from "./config/config";
 import { getUserToken } from './utils/userToken';
 
 
 function App(): React.JSX.Element {
-	const navigate = useNavigate();
+	const navigate: NavigateFunction = useNavigate();
   	const { pathname } = useLocation();
 
 	// set title
@@ -23,12 +23,12 @@ function App(): React.JSX.Element {
 	// navigate to /signin page if token does not exit
 	useEffect(() =>{
 		const preventCheckPages = config.pages.preventCheckTokenPaths;
-		const userToken = getUserToken();
+		const userToken: string | undefined = getUserToken();
 		if(preventCheckPages.includes(pathname)) return;
 		if(!userToken){
-			return navigate("/signin");
+			navigate("/signin");
 		}
-	}, []);
+	}, [pathname]);
 
 	return (
 		<>

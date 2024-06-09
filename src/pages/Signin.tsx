@@ -1,13 +1,16 @@
 import React from "react";
 import sbtvc from "../assets/images/sbtvcwithname.jpg";
 import googleIconSVG from "../assets/images/google-icon.svg";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { TokenResponse, useGoogleLogin } from "@react-oauth/google";
 import { useToast } from "@chakra-ui/react";
 import { getUserToken, removeUserToken } from "../utils/userToken";
+import config from "../config/config";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 
 function SignIn(): React.JSX.Element {
     const toast = useToast();
+    const navigate: NavigateFunction = useNavigate();
 
     const googleLogin = useGoogleLogin({
         onSuccess: googleLoginOnSuccess,
@@ -16,18 +19,27 @@ function SignIn(): React.JSX.Element {
     function googleLoginOnError(errorResponse: Pick<TokenResponse, "error" | "error_description" | "error_uri">): void {
         toast({
             status: "error",
-            description: "Login Error",
+            description: "Signin Error",
             position: "top",
         });
         console.info(errorResponse);
     }
     async function googleLoginOnSuccess(successResponse: Omit<TokenResponse, "error" | "error_description" | "error_uri">): Promise<void> {
-        
+        axios.defaults.withCredentials = true;
+        const response: AxiosResponse = await axios.post(`${config.backend.api.baseurl}/api/v1/user/auth/google/auth/callback`, {
+            accessToken: successResponse.access_token,
+        }, {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+        });
+        console.info(response.data?.message);
         toast({
             status: "success",
-            description: "Login Success",
+            description: "Signin Success",
             position: "top",
         });
+        navigate("/");
     }
 
 
@@ -42,10 +54,10 @@ function SignIn(): React.JSX.Element {
                                 Alerting Medicine Cabinet by Using IoT and Web Application
                             </div>
                         </div>
-                        <div className="bg-gradient-to-b from-[#f76418] to-[#c74605] p-8 py-12 rounded-t-3xl">
-                            <div className="text-center text-white font-semibold mb-6">Sign-in Options</div>
+                        <div className="bg-gradient-to-b from-[#f76418] to-[#c74605] p-8 py-10 rounded-t-3xl">
+                            <div className="text-center text-white text-lg font-semibold mb-6">Sign-in Options</div>
                             <div onClick={() => googleLogin()}> {/*Google Login Button*/}
-                                <div className="flex flex-row justify-center items-center gap-2 bg-white text-black py-4 rounded-xl hover:bg-gray-300 active:bg-gray-400 duration-300 cursor-pointer">
+                                <div className="flex flex-row justify-center items-center gap-2 bg-white text-black py-4 rounded-xl hover:bg-[#e6e6e6] active:bg-[#cfcfcf] hover:text-[#f76418] duration-300 cursor-pointer">
                                     <span>
                                         <img className="h-7" src={googleIconSVG} alt="google_signin" />
                                     </span>

@@ -52,24 +52,37 @@
 	supported by Chrome, Edge, Opera and Firefox */
 }
 
+/* Y Overflow */
 ::-webkit-scrollbar {
 	width: 5px;
 }
-
 ::-webkit-scrollbar-track {
 	background: black;
 }
-
 ::-webkit-scrollbar-thumb {
 	background: white;
 	border-radius: 50px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
 	background: white;
 	border-radius: 50px;
 }
 
+/* X Overflow */
+::-webkit-scrollbar:horizontal {
+    height: 5px; 
+}
+::-webkit-scrollbar-track:horizontal {
+    background: rgb(230, 230, 230);
+}
+::-webkit-scrollbar-thumb:horizontal {
+    background: #ff925b;
+    border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:horizontal:hover {
+    background: #ff5d0b;
+    border-radius: 50px;
+}
 @font-face {
 	font-family: "FcHome";
 	src: url("./assets/fonts/FC-Home/FC_Home_Regular.ttf") format('truetype');
