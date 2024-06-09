@@ -34,12 +34,22 @@ function SignIn(): React.JSX.Element {
             }
         });
         console.info(response.data?.message);
-        toast({
-            status: "success",
-            description: "Signin Success",
-            position: "top",
-        });
-        navigate("/");
+        if(response.data?.status === "OK"){
+            toast({
+                status: "success",
+                description: "Signin Success",
+                position: "top",
+            });
+            navigate("/");
+        }
+        else {
+            toast({
+                status: "error",
+                description: "Signin Error",
+                position: "top",
+            });
+            console.info(response.data);
+        }
     }
 
 
