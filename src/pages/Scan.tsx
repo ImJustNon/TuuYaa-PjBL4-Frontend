@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { OnResultFunction, QrReader } from "react-qr-reader";
-import { useEditable, useToast } from "@chakra-ui/react";
+import { useDisclosure, useEditable, useToast } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import AddNewModal from "../components/AddNewModal";
 
 function Scan(): React.JSX.Element {
-    const [qrResultData, setQrResultData] = useState("No result");
-    const toast = useToast();
+    const [qrResultData, setQrResultData] = useState<string>("");
+    const { isOpen, onOpen, onClose } = useDisclosure();
 
 
-    useEffect(() =>{
-        toast({
-            title: `Result : ${qrResultData}`,
-            status: "success"
-        });
-    }, [qrResultData]);
+    function onResult(result: any){
+        const text: string = result.text ?? "";
+        setQrResultData(text);
+        onOpen();
+    }
+
 
     return (
       <>
@@ -60,14 +61,14 @@ function Scan(): React.JSX.Element {
                         constraints={{ facingMode: "environment" }}
                         onResult={(result: any, error: any): void =>{
                             if (!!result) {
-                                setQrResultData(result?.text);
+                                onResult(result);
                             }
                             if (!!error) {
-                                // console.info(error);
-                                setQrResultData("Clear Result");
+                                // console.info("QrReader Error Info : ", error);
                             }
                         }}
                     />
+                    <AddNewModal isOpen={isOpen} onOpen={onOpen} onClose={onClose} id={qrResultData} />
                 </div>
             </div>
         </div>

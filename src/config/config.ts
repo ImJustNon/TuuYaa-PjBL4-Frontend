@@ -6,7 +6,8 @@ const config = {
     },
     backend: {
         api: {
-            baseurl: "http://127.0.0.1:8484",
+            // baseurl: "https://tuuyaa-pjbl4-backend.vercel.app",
+            baseurl: "http://127.0.0.1:8484"
         }
     }
 }
