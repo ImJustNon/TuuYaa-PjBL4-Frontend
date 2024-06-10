@@ -24,7 +24,7 @@ function App(): React.JSX.Element {
 	useEffect(() =>{
 		const preventCheckPages = config.pages.preventCheckTokenPaths;
 		const userToken: string | undefined = getUserToken();
-		console.log(userToken);
+		setTimeout(() => console.log(userToken), 10000) 
 		if(preventCheckPages.includes(pathname)) return;
 		if(!userToken){
 			// navigate("/signin");
