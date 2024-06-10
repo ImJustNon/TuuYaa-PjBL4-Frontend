@@ -10,6 +10,7 @@ import { NavigateFunction, useLocation, useNavigate } from 'react-router-dom';
 import config from "./config/config";
 import { getUserToken } from './utils/userToken';
 import Cookies from "js-cookie";
+import axios, { AxiosResponse } from 'axios';
 
 function App(): React.JSX.Element {
 	const navigate: NavigateFunction = useNavigate();
@@ -22,13 +23,36 @@ function App(): React.JSX.Element {
 
 	// navigate to /signin page if token does not exit
 	useEffect(() =>{
-		const preventCheckPages = config.pages.preventCheckTokenPaths;
-		const userToken: string | undefined = Cookies.get("token");
-		console.log(userToken);
-		if(preventCheckPages.includes(pathname)) return;
-		if(!userToken){
-			navigate("/signin");
-		}
+		(async(): Promise<void> => {
+			// เช็คถ้า Path นั้นไม่จำเป็นต้องเช็ค
+			const preventCheckPages = config.pages.preventCheckTokenPaths;
+			if(preventCheckPages.includes(pathname)) return;
+			// ถ้า Path นั้นต้องเช็คให้ส่ง Request ไป Server เช็ค
+			try {
+				axios.defaults.withCredentials = true;
+				const response: AxiosResponse = await axios.post(`${config.backend.api.baseurl}/api/v1/user/validate`);
+				const responseData: any = response.data;
+				if(responseData.status === "FAIL"){
+					// ถ้า Server ตอบ FAIL ให้ลบ cookie เเละ ดีดไปที่ signin
+					await axios.post(`${config.backend.api.baseurl}/api/v1/user/auth/google/signout`);
+					navigate("/signin");
+					return;
+				}
+				console.log("Validate User Success");
+			}
+			catch(e){
+				console.info("Validate User Error : ", e);
+				navigate("/signin");
+				return;
+			}
+		})();
+		// const preventCheckPages = config.pages.preventCheckTokenPaths;
+		// const userToken: string | undefined = getUserToken();
+		// console.log(userToken);
+		// if(preventCheckPages.includes(pathname)) return;
+		// if(!userToken){
+		// 	navigate("/signin");
+		// }
 	}, [pathname]);
 
 	return (

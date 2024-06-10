@@ -30,8 +30,8 @@ function Home(): React.JSX.Element {
                 }
             });
             const responseData: any = response.data;
-            setUserProfileUrl(responseData?.data.user_profile_url);
-            setUserName(responseData?.data.user_name);
+            setUserProfileUrl(responseData.data?.user_profile_url);
+            setUserName(responseData.data?.user_name);
         })();
         (async(): Promise<void> =>{ // box list
             axios.defaults.withCredentials = true;
@@ -127,11 +127,11 @@ function Home(): React.JSX.Element {
                     <div className="p-4">
                         <div className="mb-4">
                             <div className="text-lg font-semibold">
-                                Added Cabinate {`(${cabinetList.length})`}
+                                Added Cabinate {`(${cabinetList?.length})`}
                             </div>
                         </div>
                         <div className="grid grid-cols-3 gap-3"> {/* ถ้า User ได้เพิ่มกล่องในระบบอยู่เเล้วให้เเสดงรายการ */}
-                            {cabinetList.map((cabinet: any, i: number) => (
+                            {cabinetList?.map((cabinet: any, i: number) => (
                                 <Link to={`/b/${cabinet.box_uuid}`} key={i}>
                                     <div className="w-full aspect-square bg-neutral-200 grid place-items-center rounded-xl hover:bg-neutral-300 active:bg-neutral-400 duration-300">
                                         <div className="flex flex-col items-center w-full gap-2">
@@ -146,7 +146,7 @@ function Home(): React.JSX.Element {
                                 </Link>
                             ))}
                         </div> {/* ถ้า User ไม่เคยเพิ่มให้เเสดงข้อความ */}
-                        {cabinetList.length === 0 ? ( 
+                        {cabinetList?.length === 0 ? ( 
                             <div className="flex flex-col gap-4 mb-4">
                                 <div className="text-center py-8">
                                     <div className="text-lg">ไม่มีรายการตู้</div>
@@ -161,7 +161,7 @@ function Home(): React.JSX.Element {
                             <div className="text-lg font-semibold">
                                 Today's Alert
                             </div>
-                            <div className="text-sm">ทั้งหมด {todayAlert.length} การเเจ้งเตือน</div>
+                            <div className="text-sm">ทั้งหมด {todayAlert?.length} การเเจ้งเตือน</div>
                         </div>
                         <div className="overflow-x-auto noselect"> {/* ถ้าพบรายการเเจ้งเตือนของวันนี้ */}
                             <table className="table table-sm">
@@ -175,7 +175,7 @@ function Home(): React.JSX.Element {
                                     </tr>
                                 </thead> 
                                 <tbody>
-                                    {todayAlert.map((alert, i: number) =>(
+                                    {todayAlert?.map((alert, i: number) =>(
                                         <tr className="text-center" key={i}>
                                             <td>{alert.id}</td> 
                                             <td>{alert.alert_name}</td> 
@@ -188,7 +188,7 @@ function Home(): React.JSX.Element {
                                 
                             </table>
                         </div> {/* ถ้าไม่พบรายการเเจ้งเตือนของวันนี้ */}
-                        {todayAlert.length === 0 ? ( 
+                        {todayAlert?.length === 0 ? ( 
                             <div className="flex flex-col gap-4 mb-4">
                                 <div className="text-center py-8">
                                     <div className="text-lg">ไม่มีการเเจ้งเตือนวันนี้</div>
