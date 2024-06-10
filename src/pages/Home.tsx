@@ -8,12 +8,13 @@ import { useNavigate } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
 import { getUserToken } from "../utils/userToken";
 import moment from "moment";
+import defaultUserProfile from "../assets/images/default_profile.png";
 
 function Home(): React.JSX.Element {
     const navigate: NavigateFunction = useNavigate();
     const toast = useToast();
 
-    const [userProfileUrl, setUserProfileUrl] = useState<string>("");
+    const [userProfileUrl, setUserProfileUrl] = useState<string>(defaultUserProfile);
     const [userName, setUserName] = useState<string>("");
 
     const [cabinetList, setCabinetList] = useState<any[]>([]);
