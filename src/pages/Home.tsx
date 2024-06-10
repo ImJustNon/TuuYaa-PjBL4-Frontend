@@ -27,7 +27,7 @@ function Home(): React.JSX.Element {
             axios.defaults.withCredentials = true;
             const response: AxiosResponse = await axios.get(`${config.backend.api.baseurl}/api/v1/user/info`, {
                 headers: {
-                  'Authorization': `Bearer ${userToken ?? ""}`
+                    'Authorization': `Bearer ${userToken ?? ""}`
                 }
             });
             const responseData: any = response.data;
