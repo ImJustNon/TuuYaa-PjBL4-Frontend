@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import SignIn from "../pages/Signin";
 import Scan from "../pages/Scan";
 import NotFound from "../pages/NotFound";
+import Bypass from "../components/Bypass";
 
 function AppRouter(): React.JSX.Element {
     return(
@@ -30,6 +31,12 @@ function AppRouter(): React.JSX.Element {
                     <AppLayout >
                         <Scan />
                     </AppLayout>
+                } 
+            />
+            <Route 
+                path={'/bypass'} 
+                element={
+                    <Bypass />
                 } 
             />
             <Route 
