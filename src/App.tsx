@@ -27,7 +27,7 @@ function App(): React.JSX.Element {
 		console.log(userToken);
 		if(preventCheckPages.includes(pathname)) return;
 		if(!userToken){
-			navigate("/signin");
+			// navigate("/signin");
 		}
 	}, [pathname]);
 
