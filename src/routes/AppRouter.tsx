@@ -5,6 +5,7 @@ import SignIn from "../pages/Signin";
 import Scan from "../pages/Scan";
 import NotFound from "../pages/NotFound";
 import Bypass from "../components/Bypass";
+import Manage from "../pages/Manage";
 
 function AppRouter(): React.JSX.Element {
     return(
@@ -12,7 +13,7 @@ function AppRouter(): React.JSX.Element {
             <Route 
                 path={'/'} 
                 element={
-                    <AppLayout >
+                    <AppLayout>
                         <Home />
                     </AppLayout>
                 } 
@@ -20,7 +21,7 @@ function AppRouter(): React.JSX.Element {
             <Route 
                 path={'/signin'} 
                 element={
-                    <AppLayout >
+                    <AppLayout>
                         <SignIn />
                     </AppLayout>
                 } 
@@ -28,8 +29,16 @@ function AppRouter(): React.JSX.Element {
             <Route 
                 path={'/scan'} 
                 element={
-                    <AppLayout >
+                    <AppLayout>
                         <Scan />
+                    </AppLayout>
+                } 
+            />
+            <Route 
+                path={'/manage/b/:boxUUID'} 
+                element={
+                    <AppLayout>
+                        <Manage />
                     </AppLayout>
                 } 
             />
@@ -42,7 +51,7 @@ function AppRouter(): React.JSX.Element {
             <Route 
                 path={'*'} 
                 element={
-                    <AppLayout >
+                    <AppLayout>
                         <NotFound />
                     </AppLayout>
                 } 
