@@ -15,7 +15,7 @@ function Home(): React.JSX.Element {
     const toast = useToast();
 
     const [userProfileUrl, setUserProfileUrl] = useState<string>(defaultUserProfile);
-    const [userName, setUserName] = useState<string>("");
+    const [userName, setUserName] = useState<string>("HI! 👋");
 
     const [cabinetList, setCabinetList] = useState<any[]>([]);
 
