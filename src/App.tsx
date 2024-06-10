@@ -9,7 +9,7 @@ import Background from './components/Background';
 import { NavigateFunction, useLocation, useNavigate } from 'react-router-dom';
 import config from "./config/config";
 import { getUserToken } from './utils/userToken';
-
+import Cookies from "js-cookie";
 
 function App(): React.JSX.Element {
 	const navigate: NavigateFunction = useNavigate();
@@ -23,11 +23,11 @@ function App(): React.JSX.Element {
 	// navigate to /signin page if token does not exit
 	useEffect(() =>{
 		const preventCheckPages = config.pages.preventCheckTokenPaths;
-		const userToken: string | undefined = getUserToken();
-		setTimeout(() => console.log(userToken), 10000) 
+		const userToken: string | undefined = Cookies.get("token");
+		console.log(userToken);
 		if(preventCheckPages.includes(pathname)) return;
 		if(!userToken){
-			// navigate("/signin");
+			navigate("/signin");
 		}
 	}, [pathname]);
 
