@@ -24,6 +24,7 @@ function App(): React.JSX.Element {
 	useEffect(() =>{
 		const preventCheckPages = config.pages.preventCheckTokenPaths;
 		const userToken: string | undefined = getUserToken();
+		console.log(userToken);
 		if(preventCheckPages.includes(pathname)) return;
 		if(!userToken){
 			navigate("/signin");
