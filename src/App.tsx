@@ -27,7 +27,10 @@ function App(): React.JSX.Element {
 		(async(): Promise<void> => {
 			// เช็คถ้า Path นั้นไม่จำเป็นต้องเช็ค
 			const preventCheckPages = config.pages.preventCheckTokenPaths;
-			if(preventCheckPages.includes(pathname)) return;
+			if(preventCheckPages.includes(pathname)){
+				setIsAuthLoaded(true);
+				return;
+			} 
 			// ถ้า Path นั้นต้องเช็คให้ส่ง Request ไป Server เช็ค
 			setIsAuthLoaded(false);
 			try {
