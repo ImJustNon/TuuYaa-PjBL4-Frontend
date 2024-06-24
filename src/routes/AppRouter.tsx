@@ -7,13 +7,13 @@ import NotFound from "../pages/NotFound";
 import Bypass from "../components/Bypass";
 import Manage from "../pages/Manage";
 
-function AppRouter(): React.JSX.Element {
+function AppRouter({ isAuthLoaded }: { isAuthLoaded: boolean }): React.JSX.Element {
     return(
         <Routes>
             <Route 
                 path={'/'} 
                 element={
-                    <AppLayout>
+                    <AppLayout isAuthLoaded={isAuthLoaded}>
                         <Home />
                     </AppLayout>
                 } 
@@ -21,7 +21,7 @@ function AppRouter(): React.JSX.Element {
             <Route 
                 path={'/signin'} 
                 element={
-                    <AppLayout>
+                    <AppLayout isAuthLoaded={isAuthLoaded}>
                         <SignIn />
                     </AppLayout>
                 } 
@@ -29,7 +29,7 @@ function AppRouter(): React.JSX.Element {
             <Route 
                 path={'/scan'} 
                 element={
-                    <AppLayout>
+                    <AppLayout isAuthLoaded={isAuthLoaded}>
                         <Scan />
                     </AppLayout>
                 } 
@@ -37,7 +37,7 @@ function AppRouter(): React.JSX.Element {
             <Route 
                 path={'/manage/b/:boxUUID'} 
                 element={
-                    <AppLayout>
+                    <AppLayout isAuthLoaded={isAuthLoaded}>
                         <Manage />
                     </AppLayout>
                 } 
@@ -51,7 +51,7 @@ function AppRouter(): React.JSX.Element {
             <Route 
                 path={'*'} 
                 element={
-                    <AppLayout>
+                    <AppLayout isAuthLoaded={isAuthLoaded}>
                         <NotFound />
                     </AppLayout>
                 } 

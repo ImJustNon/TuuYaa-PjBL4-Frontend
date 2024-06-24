@@ -13,7 +13,7 @@ export default defineConfig({
     port: 2567,
     open: false,
     hmr: {
-      overlay: true
+      overlay: true,
     }
   }
 });

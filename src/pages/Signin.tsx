@@ -65,27 +65,23 @@ function SignIn(): React.JSX.Element {
 
     return (
         <>
-            <div className="min-h-screen flex flex-col items-center">
-                <div className="w-full flex flex-col grow bg-white md:max-w-md">
-                    <div className="flex flex-col grow">
-                        <div className="flex flex-col grow items-center justify-center gap-5">
-                            <img className="max-w-[60%]" src={sbtvc} alt="sbtvc" />
-                            <div className="text-center font-normal text-2xl text-[#f9682f] px-16 font-fchome">
-                                Alerting Medicine Cabinet by Using IoT and Web Application
-                            </div>
-                        </div>
-                        <div className="bg-gradient-to-b from-[#f76418] to-[#c74605] p-8 py-10 rounded-t-3xl">
-                            <div className="text-center text-white text-lg font-semibold mb-6">Sign-in Options</div>
-                            <div onClick={() => googleLogin()}> {/*Google Login Button*/}
-                                <div className="flex flex-row justify-center items-center gap-2 bg-white text-black py-4 rounded-xl hover:bg-[#e6e6e6] active:bg-[#cfcfcf] hover:text-[#f76418] duration-300 cursor-pointer">
-                                    <span>
-                                        <img className="h-7" src={googleIconSVG} alt="google_signin" />
-                                    </span>
-                                    <span>
-                                        Continue with Google
-                                    </span>
-                                </div>
-                            </div>
+            <div className="flex flex-col grow">
+                <div className="flex flex-col grow items-center justify-center gap-5">
+                    <img className="max-w-[60%]" src={sbtvc} alt="sbtvc" />
+                    <div className="text-center font-normal text-2xl text-[#f9682f] px-16 font-fchome">
+                        Alerting Medicine Cabinet by Using IoT and Web Application
+                    </div>
+                </div>
+                <div className="bg-gradient-to-b from-[#f76418] to-[#c74605] p-8 py-10 rounded-t-3xl">
+                    <div className="text-center text-white text-lg font-semibold mb-6">Sign-in Options</div>
+                    <div onClick={() => googleLogin()}> {/*Google Login Button*/}
+                        <div className="flex flex-row justify-center items-center gap-2 bg-white text-black py-4 rounded-xl hover:bg-[#e6e6e6] active:bg-[#cfcfcf] hover:text-[#f76418] duration-300 cursor-pointer">
+                            <span>
+                                <img className="h-7" src={googleIconSVG} alt="google_signin" />
+                            </span>
+                            <span>
+                                Continue with Google
+                            </span>
                         </div>
                     </div>
                 </div>

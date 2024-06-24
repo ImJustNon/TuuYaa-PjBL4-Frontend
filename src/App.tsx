@@ -15,6 +15,7 @@ import axios, { AxiosResponse } from 'axios';
 function App(): React.JSX.Element {
 	const navigate: NavigateFunction = useNavigate();
   	const { pathname } = useLocation();
+	const [isAuthLoaded, setIsAuthLoaded] = useState<boolean>(false);
 
 	// set title
 	useEffect(() =>{
@@ -28,6 +29,7 @@ function App(): React.JSX.Element {
 			const preventCheckPages = config.pages.preventCheckTokenPaths;
 			if(preventCheckPages.includes(pathname)) return;
 			// ถ้า Path นั้นต้องเช็คให้ส่ง Request ไป Server เช็ค
+			setIsAuthLoaded(false);
 			try {
 				axios.defaults.withCredentials = true;
 				const response: AxiosResponse = await axios.post(`${config.backend.api.baseurl}/api/v1/user/validate`);
@@ -36,13 +38,16 @@ function App(): React.JSX.Element {
 					// ถ้า Server ตอบ FAIL ให้ลบ cookie เเละ ดีดไปที่ signin
 					await axios.post(`${config.backend.api.baseurl}/api/v1/user/auth/google/signout`);
 					navigate("/signin");
+					setTimeout(() => setIsAuthLoaded(true), 1000); // renderpage
 					return;
 				}
 				console.log("Validate User Success");
+				setTimeout(() => setIsAuthLoaded(true), 1000); // renderpage
 			}
 			catch(e){
 				console.info("Validate User Error : ", e);
 				navigate("/signin");
+				setTimeout(() => setIsAuthLoaded(true), 1000); // renderpage
 				return;
 			}
 		})();
@@ -60,7 +65,7 @@ function App(): React.JSX.Element {
 			<ChakraProvider theme={theme}>
 				<Background />
 				<div className="relative">
-					<AppRouter />
+					<AppRouter isAuthLoaded={isAuthLoaded} />
 				</div>
 			</ChakraProvider>
 		</>
