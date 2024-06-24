@@ -162,39 +162,40 @@ function Home(): React.JSX.Element {
                     </div>
                     <div className="text-sm">ทั้งหมด {todayAlert?.length} การเเจ้งเตือน</div>
                 </div>
-                <div className="overflow-x-auto noselect"> {/* ถ้าพบรายการเเจ้งเตือนของวันนี้ */}
-                    <table className="table table-sm">
-                        <thead>
-                            <tr className="text-center">
-                                <th>Alert ID</th> 
-                                <th>Alert Name</th> 
-                                <th>Alert Date</th> 
-                                <th>Alert Time</th> 
-                                <th>Alert Slot</th> 
-                            </tr>
-                        </thead> 
-                        <tbody>
-                            {todayAlert?.map((alert, i: number) =>(
-                                <tr className="text-center" key={i}>
-                                    <td>{alert.id}</td> 
-                                    <td>{alert.alert_name}</td> 
-                                    <td>{(alert.alert_time).split("T")[0]}</td> 
-                                    <td>{(alert.alert_time).split("T")[1].split(".")[0]}</td> 
-                                    <td>{(alert.alert_slot).join(", ")}</td> 
+                {/* ถ้าไม่พบรายการเเจ้งเตือนของวันนี้ */}
+                {todayAlert?.length > 0 ? ( 
+                    <div className="overflow-x-auto noselect"> {/* ถ้าพบรายการเเจ้งเตือนของวันนี้ */}
+                        <table className="table table-sm">
+                            <thead>
+                                <tr className="text-center">
+                                    <th>Alert ID</th> 
+                                    <th>Alert Name</th> 
+                                    <th>Alert Date</th> 
+                                    <th>Alert Time</th> 
+                                    <th>Alert Slot</th> 
                                 </tr>
-                            ))}
-                        </tbody> 
-                        
-                    </table>
-                </div> {/* ถ้าไม่พบรายการเเจ้งเตือนของวันนี้ */}
-                {todayAlert?.length === 0 ? ( 
+                            </thead> 
+                            <tbody>
+                                {todayAlert?.map((alert, i: number) =>(
+                                    <tr className="text-center" key={i}>
+                                        <td>{alert.id}</td> 
+                                        <td>{alert.alert_name}</td> 
+                                        <td>{(alert.alert_time).split("T")[0]}</td> 
+                                        <td>{(alert.alert_time).split("T")[1].split(".")[0]}</td> 
+                                        <td>{(alert.alert_slot).join(", ")}</td> 
+                                    </tr>
+                                ))}
+                            </tbody> 
+                        </table>
+                    </div>   
+                ) : (
                     <div className="flex flex-col gap-4 mb-4">
                         <div className="text-center py-8">
                             <div className="text-lg">ไม่มีการเเจ้งเตือนวันนี้</div>
                             <p className="text-sm">เข้าตั้งค่าเพื่อตั้งค่าเวลาเเจ้งเตือน</p>
                         </div>
                     </div>
-                ) : (<></>)}
+                )}
             </div>
         </>
     );
