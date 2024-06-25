@@ -6,12 +6,12 @@ import axios, { AxiosResponse } from "axios";
 import config from "../config/config";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
-import { getUserToken } from "../utils/userToken";
 import moment from "moment";
 import defaultUserProfile from "../assets/images/default_profile.png";
 import lang_th from "../assets/images/th.jpg";
 import lang_en from "../assets/images/en.jpg";
 import lang_kh from "../assets/images/kh.jpg";
+import { PreferLanguage } from "../types/types";
 
 function Home(): React.JSX.Element {
     const navigate: NavigateFunction = useNavigate();
@@ -28,13 +28,8 @@ function Home(): React.JSX.Element {
 
     useEffect(() =>{
         (async(): Promise<void> =>{ // user info
-            const userToken: string | undefined = getUserToken();
             axios.defaults.withCredentials = true;
-            const response: AxiosResponse = await axios.get(`${config.backend.api.baseurl}/api/v1/user/info`, {
-                headers: {
-                    'Authorization': `Bearer ${userToken ?? ""}`
-                }
-            });
+            const response: AxiosResponse = await axios.get(`${config.backend.api.baseurl}/api/v1/user/info`);
             const responseData: any = response.data;
             setUserProfileUrl(responseData.data?.user_profile_url);
             setUserName(responseData.data?.user_name);
@@ -81,6 +76,18 @@ function Home(): React.JSX.Element {
         });
     }
 
+    function switchLanguage(lang: PreferLanguage): void{
+        if(lang === "th") {
+
+        }
+        else if(lang === "kh"){
+            
+        }
+        else { // en
+            
+        }
+    }
+
     
     return (
         <>
@@ -93,15 +100,15 @@ function Home(): React.JSX.Element {
                             <span className="text-sm">Languages</span> 
                         </div>
                         <div className="absolute flex flex-col items-center bg-white rounded-2xl left-0 top-[45px] p-3 !px-3 gap-3 w-44 cursor-pointer animate__animated animate__fadeIn animate__faster" hidden={!showLanguageSelector}>
-                            <div className="flex flex-row gap-2 items-center self-start w-full hover:text-[#f76418] duration-300" onClick={() => navigate("/")}>
+                            <div className="flex flex-row gap-2 items-center self-start w-full hover:text-[#f76418] duration-300" onClick={() => switchLanguage("th")}>
                                 <img className="w-5 h-5 rounded-full" src={lang_th} alt="th-lang" />
                                 <span className="text-sm font-medium">Thai / ไทย</span> 
                             </div>
-                            <div className="flex flex-row gap-2 items-center self-start w-full hover:text-[#f76418] duration-300" onClick={() => navigate("/")}>
+                            <div className="flex flex-row gap-2 items-center self-start w-full hover:text-[#f76418] duration-300" onClick={() => switchLanguage("th")}>
                                 <img className="w-5 h-5 rounded-full" src={lang_en} alt="en-lang" />
                                 <span className="text-sm font-medium">English / อังกฤษ</span> 
                             </div>
-                            <div className="flex flex-row gap-2 items-center self-start w-full hover:text-[#f76418] duration-300" onClick={() => navigate("/")}>
+                            <div className="flex flex-row gap-2 items-center self-start w-full hover:text-[#f76418] duration-300" onClick={() => switchLanguage("kh")}>
                                 <img className="w-5 h-5 rounded-full" src={lang_kh} alt="kh-lang" />
                                 <span className="text-sm font-medium">Khmer / เขมร</span> 
                             </div>

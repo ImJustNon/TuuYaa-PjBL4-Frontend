@@ -4,7 +4,6 @@ import googleIconSVG from "../assets/images/google-icon.svg";
 import axios, { AxiosResponse } from "axios";
 import { TokenResponse, useGoogleLogin } from "@react-oauth/google";
 import { useToast } from "@chakra-ui/react";
-import { getUserToken, removeUserToken } from "../utils/userToken";
 import config from "../config/config";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 

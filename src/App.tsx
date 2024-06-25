@@ -8,7 +8,7 @@ import AppRouter from './routes/AppRouter';
 import Background from './components/Background';
 import { NavigateFunction, useLocation, useNavigate } from 'react-router-dom';
 import config from "./config/config";
-import { getUserToken } from './utils/userToken';
+import { getUserToken } from './utils/preferLanguage';
 import Cookies from "js-cookie";
 import axios, { AxiosResponse } from 'axios';
 
