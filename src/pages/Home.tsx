@@ -12,6 +12,9 @@ import lang_th from "../assets/images/th.jpg";
 import lang_en from "../assets/images/en.jpg";
 import lang_kh from "../assets/images/kh.jpg";
 import { PreferLanguage } from "../types/types";
+import { setLanguage } from "../utils/preferLanguage";
+import { useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function Home(): React.JSX.Element {
     const navigate: NavigateFunction = useNavigate();
@@ -25,6 +28,8 @@ function Home(): React.JSX.Element {
     const [cabinetList, setCabinetList] = useState<any[]>([]);
 
     const [todayAlert, setTodayAlert] = useState<any[]>([]);
+
+    const { t, i18n } = useTranslation();
 
     useEffect(() =>{
         (async(): Promise<void> =>{ // user info
@@ -77,14 +82,17 @@ function Home(): React.JSX.Element {
     }
 
     function switchLanguage(lang: PreferLanguage): void{
-        if(lang === "th") {
-
+        if(lang === "th"){
+            setLanguage("th");
+            i18n.changeLanguage("th");
         }
         else if(lang === "kh"){
-            
+            setLanguage("kh");
+            i18n.changeLanguage("kh");
         }
         else { // en
-            
+            setLanguage("en");
+            i18n.changeLanguage("en");
         }
     }
 
