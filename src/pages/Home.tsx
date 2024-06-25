@@ -9,10 +9,15 @@ import { useToast } from "@chakra-ui/react";
 import { getUserToken } from "../utils/userToken";
 import moment from "moment";
 import defaultUserProfile from "../assets/images/default_profile.png";
+import lang_th from "../assets/images/th.jpg";
+import lang_en from "../assets/images/en.jpg";
+import lang_kh from "../assets/images/kh.jpg";
 
 function Home(): React.JSX.Element {
     const navigate: NavigateFunction = useNavigate();
     const toast = useToast();
+
+    const [showLanguageSelector, setShowLanguageSelector] = useState<boolean>(false);
 
     const [userProfileUrl, setUserProfileUrl] = useState<string>(defaultUserProfile);
     const [userName, setUserName] = useState<string>("HI! 👋");
@@ -76,15 +81,31 @@ function Home(): React.JSX.Element {
         });
     }
 
-
+    
     return (
         <>
             <div className="grid gap-4 p-4 bg-gradient-to-b from-[#f76418] to-[#c74605] pb-16">
                 {/* Top menu btn */}
                 <div className="flex justify-between items-center">
-                    <div className="flex flex-row bg-white rounded-full p-2 !px-4 gap-2 cursor-pointer hover:text-[#f76418] duration-300">
-                        <i className="fa-solid fa-earth-asia fa-1x"></i>
-                        <span className="text-sm">Languages</span> 
+                    <div className="relative">
+                        <div className="flex flex-row items-center bg-white rounded-full p-2 !px-4 gap-2 cursor-pointer hover:text-[#f76418] duration-300" onClick={() => setShowLanguageSelector(prev => !prev)}>
+                            <i className="fa-solid fa-earth-asia fa-1x"></i>
+                            <span className="text-sm">Languages</span> 
+                        </div>
+                        <div className="absolute flex flex-col items-center bg-white rounded-2xl left-0 top-[45px] p-3 !px-3 gap-3 w-44 cursor-pointer animate__animated animate__fadeIn animate__faster" hidden={!showLanguageSelector}>
+                            <div className="flex flex-row gap-2 items-center self-start w-full hover:text-[#f76418] duration-300" onClick={() => navigate("/")}>
+                                <img className="w-5 h-5 rounded-full" src={lang_th} alt="th-lang" />
+                                <span className="text-sm font-medium">Thai / ไทย</span> 
+                            </div>
+                            <div className="flex flex-row gap-2 items-center self-start w-full hover:text-[#f76418] duration-300" onClick={() => navigate("/")}>
+                                <img className="w-5 h-5 rounded-full" src={lang_en} alt="en-lang" />
+                                <span className="text-sm font-medium">English / อังกฤษ</span> 
+                            </div>
+                            <div className="flex flex-row gap-2 items-center self-start w-full hover:text-[#f76418] duration-300" onClick={() => navigate("/")}>
+                                <img className="w-5 h-5 rounded-full" src={lang_kh} alt="kh-lang" />
+                                <span className="text-sm font-medium">Khmer / เขมร</span> 
+                            </div>
+                        </div>
                     </div>
                     <div className="flex flex-row bg-white rounded-full p-2 gap-2 cursor-pointer hover:text-[#f76418] duration-300" onClick={() => signout()}>
                         <i className="fa-solid fa-right-from-bracket fa-1x"></i>
