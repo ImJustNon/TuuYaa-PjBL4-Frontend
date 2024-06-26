@@ -6,10 +6,12 @@ import { TokenResponse, useGoogleLogin } from "@react-oauth/google";
 import { useToast } from "@chakra-ui/react";
 import config from "../config/config";
 import { NavigateFunction, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function SignIn(): React.JSX.Element {
     const toast = useToast();
     const navigate: NavigateFunction = useNavigate();
+    const { t, i18n } = useTranslation();
 
     const googleLogin = useGoogleLogin({
         onSuccess: googleLoginOnSuccess,
@@ -68,18 +70,18 @@ function SignIn(): React.JSX.Element {
                 <div className="flex flex-col grow items-center justify-center gap-5">
                     <img className="max-w-[60%] animate__animated animate__fadeIn animate__slow" src={sbtvc} alt="sbtvc" />
                     <div className="text-center font-normal text-2xl text-[#f9682f] px-16 font-fchome animate__animated animate__fadeIn animate__slower">
-                        Alerting Medicine Cabinet by Using IoT and Web Application
+                        {t("Alerting Medicine Cabinet by Using IoT and Web Application")}
                     </div>
                 </div>
                 <div className="bg-gradient-to-b from-[#f76418] to-[#c74605] p-8 py-10 rounded-t-3xl">
-                    <div className="text-center text-white text-lg font-semibold mb-6">Sign-in Options</div>
+                    <div className="text-center text-white text-lg font-semibold mb-6">{t("Sign-in Options")}</div>
                     <div onClick={() => googleLogin()}> {/*Google Login Button*/}
                         <div className="flex flex-row justify-center items-center gap-2 bg-white text-black py-4 rounded-xl hover:bg-[#e6e6e6] active:bg-[#cfcfcf] hover:text-[#f76418] duration-300 cursor-pointer">
                             <span>
                                 <img className="h-7" src={googleIconSVG} alt="google_signin" />
                             </span>
                             <span>
-                                Continue with Google
+                                {t("Continue with Google")}
                             </span>
                         </div>
                     </div>
