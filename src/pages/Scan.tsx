@@ -3,11 +3,13 @@ import { OnResultFunction, QrReader } from "react-qr-reader";
 import { useDisclosure, useEditable, useToast } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import AddNewModal from "../components/AddNewModal";
+import { useTranslation } from "react-i18next";
 
 function Scan(): React.JSX.Element {
     const [qrResultData, setQrResultData] = useState<string>("");
     const { isOpen, onOpen, onClose } = useDisclosure();
 
+    const { t, i18n } = useTranslation();
 
     function onResult(result: any){
         const text: string = result.text ?? "";
@@ -26,7 +28,7 @@ function Scan(): React.JSX.Element {
                     </span>
                 </div>
             </Link>
-            <div className="font-semibold text-white">Add </div>
+            <div className="font-semibold text-white">{t("Add")}</div>
         </div>
         <div className="grow flex flex-col h-full relative bg-black">
             <div className="absolute inset-0 z-10 grid place-items-center">

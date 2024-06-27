@@ -11,6 +11,10 @@ import defaultUserProfile from "../assets/images/default_profile.png";
 import lang_th from "../assets/images/th.jpg";
 import lang_en from "../assets/images/en.jpg";
 import lang_kh from "../assets/images/kh.jpg";
+import lang_jp from "../assets/images/jp.jpg";
+import lang_cn from "../assets/images/cn.jpg";
+import lang_lo from "../assets/images/lo.jpg";
+import lang_skoy from "../assets/images/skoy.jpg";
 import { PreferLanguage } from "../types/types";
 import { setLanguage } from "../utils/preferLanguage";
 import { useLocation } from "react-router-dom";
@@ -90,6 +94,10 @@ function Home(): React.JSX.Element {
             setLanguage("kh");
             i18n.changeLanguage("kh");
         }
+        else if(lang === "skoy"){
+            setLanguage("skoy");
+            i18n.changeLanguage("skoy");
+        }
         else { // en
             setLanguage("en");
             i18n.changeLanguage("en");
@@ -105,20 +113,24 @@ function Home(): React.JSX.Element {
                     <div className="relative">
                         <div className="flex flex-row items-center bg-white rounded-full p-2 !px-4 gap-2 cursor-pointer hover:text-[#f76418] duration-300" onClick={() => setShowLanguageSelector(prev => !prev)}>
                             <i className="fa-solid fa-earth-asia fa-1x"></i>
-                            <span className="text-sm">Languages</span> 
+                            <span className="text-sm">{t("Languages")}</span> 
                         </div>
                         <div className="absolute flex flex-col items-center bg-white rounded-2xl left-0 top-[45px] p-3 !px-3 gap-3 w-44 cursor-pointer animate__animated animate__fadeIn animate__faster" hidden={!showLanguageSelector}>
                             <div className="flex flex-row gap-2 items-center self-start w-full hover:text-[#f76418] duration-300" onClick={() => switchLanguage("th")}>
                                 <img className="w-5 h-5 rounded-full" src={lang_th} alt="th-lang" />
-                                <span className="text-sm font-medium">Thai / ไทย</span> 
+                                <span className="text-sm font-medium">ภาษาไทย (TH)</span> 
                             </div>
-                            <div className="flex flex-row gap-2 items-center self-start w-full hover:text-[#f76418] duration-300" onClick={() => switchLanguage("th")}>
+                            <div className="flex flex-row gap-2 items-center self-start w-full hover:text-[#f76418] duration-300" onClick={() => switchLanguage("en")}>
                                 <img className="w-5 h-5 rounded-full" src={lang_en} alt="en-lang" />
-                                <span className="text-sm font-medium">English / อังกฤษ</span> 
+                                <span className="text-sm font-medium">English (US-EN)</span> 
                             </div>
                             <div className="flex flex-row gap-2 items-center self-start w-full hover:text-[#f76418] duration-300" onClick={() => switchLanguage("kh")}>
                                 <img className="w-5 h-5 rounded-full" src={lang_kh} alt="kh-lang" />
-                                <span className="text-sm font-medium">Khmer / เขมร</span> 
+                                <span className="text-sm font-medium">ខ្មែរ (KH)</span> 
+                            </div>
+                            <div className="flex flex-row gap-2 items-center self-start w-full hover:text-[#f76418] duration-300" onClick={() => switchLanguage("skoy")}>
+                                <img className="w-5 h-5 rounded-full" src={lang_skoy} alt="skoy-lang" />
+                                <span className="text-sm font-medium">ภ๊ษ๊สก๊อษ์ย (SKOY)</span> 
                             </div>
                         </div>
                     </div>
@@ -133,8 +145,8 @@ function Home(): React.JSX.Element {
                     </span>
                 </div>
                 <div className="text-center text-white">
-                    <p className="font-light">Welcome to</p>
-                    <p className="font-light mb-3">Alerting Medicine Cabinet by Using IoT and Web Application's setting page</p>
+                    <p className="font-light">{t("Welcome to")}</p>
+                    <p className="font-light mb-3">{t("Alerting Medicine Cabinet by Using IoT and Web Application's setting page")}</p>
                     <p className="text-lg font-normal">
                         {userName}
                     </p>
@@ -154,7 +166,7 @@ function Home(): React.JSX.Element {
                                 <i className="fa-solid fa-qrcode fa-xl"></i>
                             </span>
                         </div>
-                        <p className="px-4 font-semibold">Add Cabinet</p>
+                        <p className="px-4 font-semibold">{t("Add Cabinet")}</p>
                     </div>
                 </Link>
             </div>
@@ -162,7 +174,7 @@ function Home(): React.JSX.Element {
             <div className="p-4">
                 <div className="mb-4">
                     <div className="text-lg font-semibold">
-                        Added Cabinate {`(${cabinetList?.length})`}
+                        {t("Added Cabinate")} {`(${cabinetList?.length})`}
                     </div>
                 </div>
                 <div className="grid grid-cols-3 gap-3"> {/* ถ้า User ได้เพิ่มกล่องในระบบอยู่เเล้วให้เเสดงรายการ */}
@@ -184,8 +196,8 @@ function Home(): React.JSX.Element {
                 {cabinetList?.length === 0 ? ( 
                     <div className="flex flex-col gap-4 mb-4">
                         <div className="text-center py-8">
-                            <div className="text-lg">ไม่มีรายการตู้</div>
-                            <p className="text-sm">เเสกนเพื่อเพิ่มตู้เข้ารายการ</p>
+                            <div className="text-lg">{t("There are no cabinet items")}</div>
+                            <p className="text-sm">{t("Scan to add cabinets to the list")}</p>
                         </div>
                     </div>
                 ):(<></>)}
@@ -194,9 +206,9 @@ function Home(): React.JSX.Element {
             <div className="p-4">
                 <div className="mb-4">
                     <div className="text-lg font-semibold">
-                        Today's Alert
+                        {t("Today's Alert")}
                     </div>
-                    <div className="text-sm">ทั้งหมด {todayAlert?.length} การเเจ้งเตือน</div>
+                    <div className="text-sm">{t("Total")} {todayAlert?.length} {t("Alerting")}</div>
                 </div>
                 {/* ถ้าไม่พบรายการเเจ้งเตือนของวันนี้ */}
                 {todayAlert?.length > 0 ? ( 
@@ -204,11 +216,11 @@ function Home(): React.JSX.Element {
                         <table className="table table-sm">
                             <thead>
                                 <tr className="text-center">
-                                    <th>Alert ID</th> 
-                                    <th>Alert Name</th> 
-                                    <th>Alert Date</th> 
-                                    <th>Alert Time</th> 
-                                    <th>Alert Slot</th> 
+                                    <th>{t("Alert ID")}</th> 
+                                    <th>{t("Alert Name")}</th> 
+                                    <th>{t("Alert Date")}</th> 
+                                    <th>{t("Alert Time")}</th> 
+                                    <th>{t("Alert Slot")}</th> 
                                 </tr>
                             </thead> 
                             <tbody>
@@ -227,8 +239,8 @@ function Home(): React.JSX.Element {
                 ) : (
                     <div className="flex flex-col gap-4 mb-4">
                         <div className="text-center py-8">
-                            <div className="text-lg">ไม่มีการเเจ้งเตือนวันนี้</div>
-                            <p className="text-sm">เข้าตั้งค่าเพื่อตั้งค่าเวลาเเจ้งเตือน</p>
+                            <div className="text-lg">{t("No alert today")}</div>
+                            <p className="text-sm">{t("Go into settings to set the alert time")}</p>
                         </div>
                     </div>
                 )}

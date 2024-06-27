@@ -4,11 +4,13 @@ import axios, { AxiosResponse } from "axios";
 import config from "../config/config";
 import { useToast } from "@chakra-ui/react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function AddNewModal({ isOpen, onOpen, onClose, id }: { isOpen: boolean, onOpen: () => void, onClose: () => void, id: string }): React.JSX.Element {
     const toast = useToast();
     const navigate: NavigateFunction = useNavigate();
     const [name, setName] = useState<string>("");
+    const { t, i18n } = useTranslation();
 
     async function handleSubmit(): Promise<void> {
         if(!name || name.length === 0) return;
@@ -63,15 +65,15 @@ function AddNewModal({ isOpen, onOpen, onClose, id }: { isOpen: boolean, onOpen:
                     <ModalBody paddingY={"1.5rem"} paddingX={"1.5rem"}>
                         <div className="flex flex-col w-full text-black gap-5">
                             <div className="text-black text-center font-normal text-md">
-                                Add Cabinet
+                                {t("Add Cabinet")}
                             </div>
                             <div className="flex flex-col gap-5">
                                 <div className="text-black pl-2">
-                                    ID : <span className="text-[#f76418]">{id}</span>
+                                    {t("ID")} : <span className="text-[#f76418]">{id}</span>
                                 </div>
                                 <div className="grid grid-row-2 gap-2">
                                     <div className="pl-2">
-                                        Give a name
+                                        {t("Give a name")}
                                     </div>
                                     <Input 
                                         size={"md"}
@@ -101,7 +103,7 @@ function AddNewModal({ isOpen, onOpen, onClose, id }: { isOpen: boolean, onOpen:
                                     className="font-fchome"
                                     onClick={async() => await handleSubmit()}
                                 >
-                                    Add
+                                    {t("Add")}
                                 </Button>
                             </div>
                         </div>
