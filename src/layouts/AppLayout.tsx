@@ -15,7 +15,9 @@ function AppLayout({ children, isAuthLoaded }: AppLayoutComponentProps): React.J
                     {isAuthLoaded ? 
                         React.Children.map(children, (child: ReactNode) => {
                             if (React.isValidElement(child)) {
-                                return cloneElement(child as ReactElement<any>);
+                                return React.cloneElement(child as ReactElement<any>, {
+                                    
+                                });
                             }
                             return child;
                         })
