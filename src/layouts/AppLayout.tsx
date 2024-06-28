@@ -1,11 +1,6 @@
 import React, { ReactNode, cloneElement, ReactElement } from "react";
-import { AppLayoutProps } from "../types/AppLayoutProps";
+import { AppLayoutComponentProps } from "../types/types";
 import { useTranslation } from "react-i18next";
-
-interface AppLayoutComponentProps extends AppLayoutProps {
-    isAuthLoaded: boolean;
-    children: ReactNode;
-}
 
 function AppLayout({ children, isAuthLoaded }: AppLayoutComponentProps): React.JSX.Element {
 
@@ -32,7 +27,7 @@ function AppLayout({ children, isAuthLoaded }: AppLayoutComponentProps): React.J
                             </div>
                             <div className="text-center pb-5">{t("If the page is stuck, please try reloading it")}</div>
                         </>
-                    } 
+                    }
                 </div>
             </div>
         </>

@@ -1,4 +1,7 @@
+import { ReactNode } from "react";
+
 export type PreferLanguage = "en" | "th" | "kh" | "skoy";
+
 export type ResourceData = {
     en: {
         [key: string]: string;
@@ -13,6 +16,7 @@ export type ResourceData = {
         [key: string]: string;
     };
 }
+
 export type ResoucesData = {
     en: {
         translation: {
@@ -34,4 +38,12 @@ export type ResoucesData = {
             [key: string]: string;
         };
     };
+}
+
+export interface ChildrenProps {
+    children: ReactNode;
+}
+
+export interface AppLayoutComponentProps extends ChildrenProps {
+    isAuthLoaded: boolean;
 }
