@@ -1,21 +1,37 @@
 export type PreferLanguage = "en" | "th" | "kh" | "skoy";
 export type ResourceData = {
-    en: {};
-    th: {};
-    kh: {};
-    skoy: {};
+    en: {
+        [key: string]: string;
+    };
+    th: {
+        [key: string]: string;
+    };
+    kh: {
+        [key: string]: string;
+    };
+    skoy: {
+        [key: string]: string;
+    };
 }
 export type ResoucesData = {
     en: {
-        translation: {};
+        translation: {
+            [key: string]: string;
+        };
     };
     th: {
-        translation: {};
+        translation: {
+            [key: string]: string;
+        };
     };
     kh: {
-        translation: {};
+        translation: {
+            [key: string]: string;
+        };
     };
     skoy: {
-        translation: {};
+        translation: {
+            [key: string]: string;
+        };
     };
 }

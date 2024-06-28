@@ -81,7 +81,9 @@ function Home(): React.JSX.Element {
         toast({
             status: "success",
             description: "Signed out",
-            position: "top"
+            position: "top",
+            isClosable: true,
+            duration: 1000
         });
     }
 

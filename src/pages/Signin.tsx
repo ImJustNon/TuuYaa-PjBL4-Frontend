@@ -22,6 +22,8 @@ function SignIn(): React.JSX.Element {
             status: "error",
             description: "Signin Error",
             position: "top",
+            isClosable: true,
+            duration: 1000,
         });
         console.info(errorResponse);
     }
@@ -41,6 +43,8 @@ function SignIn(): React.JSX.Element {
                     status: "success",
                     description: "Signin Success",
                     position: "top",
+                    isClosable: true,
+                    duration: 1000,
                 });
                 navigate("/");
             }
@@ -49,6 +53,8 @@ function SignIn(): React.JSX.Element {
                     status: "error",
                     description: "Signin Error",
                     position: "top",
+                    isClosable: true,
+                    duration: 1000,
                 });
                 console.info(response.data);
             }
@@ -58,6 +64,8 @@ function SignIn(): React.JSX.Element {
                 status: "error",
                 description: "Signin Error",
                 position: "top",
+                isClosable: true,
+                duration: 1000,
             });
             console.info(e);
         }
