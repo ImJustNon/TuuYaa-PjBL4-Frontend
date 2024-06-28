@@ -6,6 +6,7 @@ function AppLayout({ children, isAuthLoaded }: AppLayoutComponentProps): React.J
 
     const { t, i18n } = useTranslation();
 
+
     return (
         <>
             {/* Screen Space */}
