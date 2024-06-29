@@ -47,3 +47,11 @@ export interface ChildrenProps {
 export interface AppLayoutComponentProps extends ChildrenProps {
     isAuthLoaded: boolean;
 }
+
+export type MembersConfig = {
+    firstName: string;
+    lastName: string;
+    prefix: string;
+    image: string;
+    roles: string[];
+}
