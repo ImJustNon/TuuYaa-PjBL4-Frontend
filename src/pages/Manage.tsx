@@ -33,7 +33,7 @@ function Manage(): React.JSX.Element {
             const responseCabinetInfoData: any = responseCabinetInfo.data;
             if(responseCabinetInfoData.status === "OK"){
                 setCabinetName(responseCabinetInfoData.data?.box_name);
-                setCabinetCreateAt(moment(responseCabinetInfoData.data?.create_at).format("MMM Do YY"));
+                setCabinetCreateAt(moment(responseCabinetInfoData.data?.create_at).format("MMM Do YYYY"));
             }
             const responseUserInfo: AxiosResponse = await axios.get(`${config.backend.api.baseurl}/api/v1/user/info`, {
                 headers: {
@@ -97,7 +97,7 @@ function Manage(): React.JSX.Element {
                         </span>
                     </div>
                 </Link>
-                <div className="font-semibold text-white">{t("Manage")}</div>
+                <div className="font-semibold text-white">{t("Manage")} - {cabinetName}</div>
             </div>
             <div className="flex flex-col">
                 <div className="p-4">
