@@ -57,15 +57,15 @@
 	width: 5px;
 }
 ::-webkit-scrollbar-track {
-	background: black;
+	background: rgb(230, 230, 230);
 }
 ::-webkit-scrollbar-thumb {
-	background: white;
-	border-radius: 50px;
+	background: #ff925b;
+    border-radius: 50px;
 }
 ::-webkit-scrollbar-thumb:hover {
-	background: white;
-	border-radius: 50px;
+	background: #ff5d0b;
+    border-radius: 50px;
 }
 
 /* X Overflow */
