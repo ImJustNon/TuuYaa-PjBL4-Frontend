@@ -19,6 +19,7 @@ import { PreferLanguage } from "../types/types";
 import { setLanguage } from "../utils/preferLanguage";
 import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import Footer from "../components/Footer";
 
 function Home(): React.JSX.Element {
     const navigate: NavigateFunction = useNavigate();
@@ -247,6 +248,8 @@ function Home(): React.JSX.Element {
                     </div>
                 )}
             </div>
+            
+            <Footer />
         </>
     );
 }

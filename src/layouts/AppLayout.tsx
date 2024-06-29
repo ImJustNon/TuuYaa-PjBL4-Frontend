@@ -1,6 +1,7 @@
 import React, { ReactNode, cloneElement, ReactElement } from "react";
 import { AppLayoutComponentProps } from "../types/types";
 import { useTranslation } from "react-i18next";
+import Footer from "../components/Footer";
 
 function AppLayout({ children, isAuthLoaded }: AppLayoutComponentProps): React.JSX.Element {
 
@@ -31,6 +32,7 @@ function AppLayout({ children, isAuthLoaded }: AppLayoutComponentProps): React.J
                             <div className="text-center pb-5">{t("If the page is stuck, please try reloading it")}</div>
                         </>
                     }
+
                 </div>
             </div>
         </>

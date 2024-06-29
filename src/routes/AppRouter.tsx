@@ -6,6 +6,7 @@ import Scan from "../pages/Scan";
 import NotFound from "../pages/NotFound";
 import Bypass from "../components/Bypass";
 import Manage from "../pages/Manage";
+import AboutUs from "../pages/AboutUs";
 
 function AppRouter({ isAuthLoaded }: { isAuthLoaded: boolean }): React.JSX.Element {
     return(
@@ -46,6 +47,14 @@ function AppRouter({ isAuthLoaded }: { isAuthLoaded: boolean }): React.JSX.Eleme
                 path={'/bypass'} 
                 element={
                     <Bypass />
+                } 
+            />
+            <Route 
+                path={'/aboutus'} 
+                element={
+                    <AppLayout isAuthLoaded={isAuthLoaded}>
+                        <AboutUs />
+                    </AppLayout>
                 } 
             />
             <Route 
