@@ -6,11 +6,15 @@ import config from "../config/config";
 import moment from "moment";
 import { useDisclosure } from "@chakra-ui/react";
 import DeleteCabinetModal from "../components/DeleteCabinetModal";
+import RenameCabinetModal from "../components/RenameCabinetModal";
+
 
 function Manage(): React.JSX.Element {
     const { t, i18n } = useTranslation();
     const params: Params<string> = useParams();
     const boxUUID: string = params.boxUUID ?? "";
+
+    const [refetch, setRefetch] = useState<number>(0);
 
     const [isShowKey, setIsShowKey] = useState<boolean>(false);
 
@@ -26,6 +30,11 @@ function Manage(): React.JSX.Element {
     const deleteCabinetModalIsOpen = deleteCabinetModalDisclosure.isOpen;
     const deleteCabinetModalOnOpen = deleteCabinetModalDisclosure.onOpen;
     const deleteCabinetModalOnClose = deleteCabinetModalDisclosure.onClose;
+
+    const renameCabinetModalDisclosure = useDisclosure();
+    const renameCabinetModalIsOpen = renameCabinetModalDisclosure.isOpen;
+    const renameCabinetModalOnOpen = renameCabinetModalDisclosure.onOpen;
+    const renameCabinetModalOnClose = renameCabinetModalDisclosure.onClose;
 
     useEffect(() =>{
         (async(): Promise<void> =>{
@@ -74,7 +83,7 @@ function Manage(): React.JSX.Element {
                 setCabinetAlertList(responseCabinetAlertListData.data);
             }
         })();
-    }, []);
+    }, [refetch]);
 
     async function getCabinetKey(): Promise<void> {
         setIsShowKey(prev => !prev);
@@ -150,7 +159,7 @@ function Manage(): React.JSX.Element {
                                 </div>
                             </div>
                         </div>
-                        <div className="w-full aspect-square bg-neutral-200 grid place-items-center rounded-xl hover:bg-neutral-300 active:bg-neutral-400 duration-300">
+                        <div className="w-full aspect-square bg-neutral-200 grid place-items-center rounded-xl hover:bg-neutral-300 active:bg-neutral-400 duration-300" onClick={() => renameCabinetModalOnOpen()} >
                             <div className="flex flex-col items-center w-full gap-2 cursor-pointer">
                                 <span className="text-2xl">
                                     <i className="fa-solid fa-tools"></i>
@@ -215,6 +224,7 @@ function Manage(): React.JSX.Element {
                 </div>
             </div>
             <DeleteCabinetModal isOpen={deleteCabinetModalIsOpen} onOpen={deleteCabinetModalOnOpen} onClose={deleteCabinetModalOnClose} boxUUID={boxUUID} />
+            <RenameCabinetModal isOpen={renameCabinetModalIsOpen} onOpen={renameCabinetModalOnOpen} onClose={renameCabinetModalOnClose} boxUUID={boxUUID} refetch={setRefetch} />
         </>
     );
 }

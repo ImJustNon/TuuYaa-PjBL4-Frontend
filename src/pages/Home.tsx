@@ -188,7 +188,7 @@ function Home(): React.JSX.Element {
                                     <span className="text-2xl">
                                         <i className="fa-solid fa-pills"></i>
                                     </span>
-                                    <div className="font-semibold">
+                                    <div className="font-medium text-center">
                                         {cabinet.box_name}
                                     </div>
                                 </div>
