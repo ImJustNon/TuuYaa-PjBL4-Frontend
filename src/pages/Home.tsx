@@ -5,7 +5,7 @@ import { Link, NavigateFunction } from "react-router-dom";
 import axios, { AxiosResponse } from "axios";
 import config from "../config/config";
 import { useNavigate } from "react-router-dom";
-import { useToast } from "@chakra-ui/react";
+import { CreateToastFnReturn, useToast } from "@chakra-ui/react";
 import moment from "moment";
 import defaultUserProfile from "../assets/images/default_profile.png";
 import lang_th from "../assets/images/th.jpg";
@@ -23,7 +23,7 @@ import Footer from "../components/Footer";
 
 function Home(): React.JSX.Element {
     const navigate: NavigateFunction = useNavigate();
-    const toast = useToast();
+    const toast: CreateToastFnReturn = useToast();
 
     const [showLanguageSelector, setShowLanguageSelector] = useState<boolean>(false);
 

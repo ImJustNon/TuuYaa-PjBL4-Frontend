@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import { Link, Params, useParams } from "react-router-dom";
 import config from "../config/config";
 import moment from "moment";
+import { useDisclosure } from "@chakra-ui/react";
+import DeleteCabinetModal from "../components/DeleteCabinetModal";
 
 function Manage(): React.JSX.Element {
     const { t, i18n } = useTranslation();
@@ -19,6 +21,11 @@ function Manage(): React.JSX.Element {
     const [cabinetKey, setCabinetKey] = useState<string>("Loading...");
 
     const [cabinetAlertList, setCabinetAlertList] = useState<[]>([]);
+
+    const deleteCabinetModalDisclosure = useDisclosure();
+    const deleteCabinetModalIsOpen = deleteCabinetModalDisclosure.isOpen;
+    const deleteCabinetModalOnOpen = deleteCabinetModalDisclosure.onOpen;
+    const deleteCabinetModalOnClose = deleteCabinetModalDisclosure.onClose;
 
     useEffect(() =>{
         (async(): Promise<void> =>{
@@ -100,7 +107,7 @@ function Manage(): React.JSX.Element {
                 <div className="font-semibold text-white">{t("Manage")} - {cabinetName}</div>
             </div>
             <div className="flex flex-col">
-                <div className="p-4">
+                <div className="p-4 mx-auto">
                     <img className="rounded-lg" src="https://placehold.co/600x400" alt="img" />
                 </div>
                 <div className="flex flex-col mt-3 gap-1 px-4">    
@@ -153,7 +160,7 @@ function Manage(): React.JSX.Element {
                                 </div>
                             </div>
                         </div>
-                        <div className="w-full aspect-square bg-neutral-200 grid place-items-center rounded-xl hover:bg-neutral-300 active:bg-neutral-400 duration-300">
+                        <div className="w-full aspect-square bg-neutral-200 grid place-items-center rounded-xl hover:bg-neutral-300 active:bg-neutral-400 duration-300" onClick={() => deleteCabinetModalOnOpen()} >
                             <div className="flex flex-col items-center w-full gap-2 cursor-pointer">
                                 <span className="text-2xl">
                                     <i className="fa-solid fa-trash"></i>
@@ -207,6 +214,7 @@ function Manage(): React.JSX.Element {
                     )}
                 </div>
             </div>
+            <DeleteCabinetModal isOpen={deleteCabinetModalIsOpen} onOpen={deleteCabinetModalOnOpen} onClose={deleteCabinetModalOnClose} boxUUID={boxUUID} />
         </>
     );
 }
