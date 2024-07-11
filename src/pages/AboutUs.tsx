@@ -28,7 +28,7 @@ function AboutUs(): React.JSX.Element {
                     {config.members.map((member: MembersConfig, i: number) => (
                         <div className="grid grid-cols-3 gap-16 items-center" key={i} >
                             <span className="col-span-1 w-32 h-32 flex items-center">
-                                <img className="rounded-full border-white border-solid border-2 mx-auto w-full" src={member.image} alt="Profile" />
+                                <img className="rounded-full border-white border-solid border-2 mx-auto w-32 h-32 object-cover" src={member.image} alt="Profile" />
                             </span>
                             <div className="col-span-2 flex flex-col grow">
                                 <div className="text-xl">{member.firstName} {member.lastName}</div>
@@ -39,7 +39,7 @@ function AboutUs(): React.JSX.Element {
                 </div>
                 <div className="mb-4">
                     <div className="text-lg text-center font-semibold">
-                        Made with ❤️ by us
+                        Made with ❤️ by US
                     </div>
                 </div>
             </div>

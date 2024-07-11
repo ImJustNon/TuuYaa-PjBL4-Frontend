@@ -1,4 +1,8 @@
 import tempProfile from "../assets/images/placeholderprofile.png";
+import chompooProfile from "../assets/images/devmembers/chompoo.png";
+import nonProfile from "../assets/images/devmembers/non.png";
+import nopProfile from "../assets/images/devmembers/nop.png";
+import chiProfile from "../assets/images/devmembers/chi.png";
 
 const config = {
     googleClientId: import.meta.env.VITE_GOOGLE_CLIENT_ID ?? "SomeClientId",
@@ -16,7 +20,7 @@ const config = {
             firstName: "Laphatrada",
             lastName: "Chaiyajak",
             prefix: "Miss",
-            image: tempProfile,
+            image: chompooProfile,
             roles: [
                 "Documenter",
                 "Equipment Buyer",
@@ -27,7 +31,7 @@ const config = {
             firstName: "Thananop",
             lastName: "Yottasak",
             prefix: "Mr.",
-            image: tempProfile,
+            image: nopProfile,
             roles: [
                 "UX/UI Designer",
                 "Graphic Designer",
@@ -38,7 +42,7 @@ const config = {
             firstName: "Yossakorn",
             lastName: "Angkhanawin",
             prefix: "Mr.",
-            image: tempProfile,
+            image: chiProfile,
             roles: [
                 "Work Piece Assembler",
                 "Circuit Designer",
@@ -48,10 +52,10 @@ const config = {
             firstName: "Kanakorn",
             lastName: "Thaiprakhon",
             prefix: "Mr.",
-            image: tempProfile,
+            image: nonProfile,
             roles: [
-                "Frontend Developer",
-                "Backend Developer",
+                "Web Frontend Developer",
+                "Web Backend Developer",
                 "Arduino Developer"
             ]
         }
