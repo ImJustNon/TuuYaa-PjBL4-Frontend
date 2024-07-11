@@ -19,6 +19,7 @@
     "@react-oauth/google": "^0.12.1",
     "@types/js-cookie": "^3.0.6",
     "animate.css": "^4.1.1",
+    "aos": "^2.3.4",
     "axios": "^1.7.2",
     "dotenv": "^16.4.5",
     "framer-motion": "^11.2.10",
@@ -37,6 +38,7 @@
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.13",
+    "@types/aos": "^3.0.7",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",

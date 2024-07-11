@@ -11,6 +11,8 @@ import config from "./config/config";
 import { getLanguage } from './utils/preferLanguage';
 import Cookies from "js-cookie";
 import axios, { AxiosResponse } from 'axios';
+import "aos/dist/aos.css";
+import Aos from "aos";
 
 function App(): React.JSX.Element {
 	const navigate: NavigateFunction = useNavigate();
@@ -62,6 +64,11 @@ function App(): React.JSX.Element {
 		// 	navigate("/signin");
 		// }
 	}, [pathname]);
+
+	useEffect(() =>{
+		Aos.init({
+		});
+	}, []);
 
 	return (
 		<>

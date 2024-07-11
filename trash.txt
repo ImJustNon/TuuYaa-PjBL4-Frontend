@@ -1,0 +1,24 @@
+<div className="overflow-x-auto noselect mb-16"> {/* ถ้าพบรายการเเจ้งเตือน */}
+    <table className="table table-sm">
+        <thead>
+            <tr className="text-center">
+                <th>{t("Alert ID")}</th> 
+                <th>{t("Alert Name")}</th> 
+                <th>{t("Alert Date")}</th> 
+                <th>{t("Alert Time")}</th> 
+                <th>{t("Alert Slot")}</th> 
+            </tr>
+        </thead> 
+        <tbody>
+            {cabinetAlertList?.map((alert: any, i: number) => (
+                <tr className="text-center" key={i} >
+                    <td>{alert.id}</td> 
+                    <td>{alert.alert_name}</td> 
+                    <td>{(alert.alert_time).split("T")[0]}</td> 
+                    <td>{(alert.alert_time).split("T")[1].split(".")[0]}</td> 
+                    <td>{(alert.alert_slot).join(", ")}</td> 
+                </tr>
+            ))}
+        </tbody> 
+    </table>
+</div> 

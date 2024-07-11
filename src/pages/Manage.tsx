@@ -115,7 +115,7 @@ function Manage(): React.JSX.Element {
                 </Link>
                 <div className="font-semibold text-white">{t("Manage")} - {cabinetName}</div>
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col pb-10">
                 <div className="p-4 mx-auto">
                     <img className="rounded-lg" src="https://placehold.co/600x400" alt="img" />
                 </div>
@@ -188,31 +188,36 @@ function Manage(): React.JSX.Element {
                             Total ({cabinetAlertList.length}) Items
                         </div>
                     </div>
-                    {cabinetAlertList.length > 0 ? (
-                        <div className="overflow-x-auto noselect mb-16"> {/* ถ้าพบรายการเเจ้งเตือน */}
-                            <table className="table table-sm">
-                                <thead>
-                                    <tr className="text-center">
-                                        <th>{t("Alert ID")}</th> 
-                                        <th>{t("Alert Name")}</th> 
-                                        <th>{t("Alert Date")}</th> 
-                                        <th>{t("Alert Time")}</th> 
-                                        <th>{t("Alert Slot")}</th> 
-                                    </tr>
-                                </thead> 
-                                <tbody>
-                                    {cabinetAlertList?.map((alert: any, i: number) => (
-                                        <tr className="text-center" key={i} >
-                                            <td>{alert.id}</td> 
-                                            <td>{alert.alert_name}</td> 
-                                            <td>{(alert.alert_time).split("T")[0]}</td> 
-                                            <td>{(alert.alert_time).split("T")[1].split(".")[0]}</td> 
-                                            <td>{(alert.alert_slot).join(", ")}</td> 
-                                        </tr>
-                                    ))}
-                                </tbody> 
-                            </table>
-                        </div> 
+                    {cabinetAlertList.length > 0 ? ( // alert list
+                        <div className="flex flex-col gap-3"> 
+                            {cabinetAlertList?.map((alert: any, i: number) => (
+                                <div className={`${(i % 2 === 0) ? "bg-[#f96519]" : "bg-[#fa8d55]"} text-white rounded-xl px-4 py-2 shadow flex items-center justify-between hover:bg-[#f96519]/90 active:bg-[#f96519]/50 duration-300 cursor-pointer`} key={i}>
+                                <div className="flex flex-row items-center gap-5">
+                                    <div className="font-normal text-md">
+                                        {i + 1}.
+                                    </div>
+                                    <div className="flex flex-col gap-1"> 
+                                        <div className="font-medium">
+                                            {alert.alert_name}
+                                        </div>
+                                        <div className="font-sm">
+                                            {(alert.alert_time).split("T")[0].replaceAll("-", "/")} | {(alert.alert_time).split("T")[1].split(".")[0].slice(1, 5)}    {/* Alert Date | Alert Time*/}
+                                        </div>
+                                        <div className="w-fit flex flex-row gap-1">
+                                            {(alert.alert_slot).map((slot: string, i: number) => (
+                                                <div key={i} className="py-[2px] px-4 bg-[#ebae2c] rounded-md text-center">{slot}</div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="w-fit">
+                                    <span>
+                                        <i className="fa-solid fa-chevron-right"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                     ) : (
                         <div className="flex flex-col gap-4 mb-4">
                             <div className="text-center py-8">
