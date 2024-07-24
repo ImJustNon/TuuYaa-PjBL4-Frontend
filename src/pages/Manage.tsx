@@ -118,7 +118,7 @@ function Manage(): React.JSX.Element {
                         </span>
                     </div>
                 </Link>
-                <div className="font-semibold text-white">{t("Manage")} - {cabinetName}</div>
+                <div className="font-semibold text-white">{t("Manage")} - {cabinetName.charAt(0).toUpperCase() + cabinetName.slice(1)}</div>
             </div>
             <div className="flex flex-col pb-10">
                 {/* <div className="p-4 mx-auto">
@@ -191,7 +191,7 @@ function Manage(): React.JSX.Element {
                     {cabinetAlertList.length > 0 ? ( // alert list
                         <div className="flex flex-col gap-3"> 
                             {cabinetAlertList?.map((alert: any, i: number) => (
-                            <Link to={`/manage/b/${boxUUID}/a/${alert.alert_uuid}`} className={`${(i % 2 === 0) ? "bg-[#f96519]" : "bg-[#fa8d55]"} text-white rounded-xl px-4 py-2 shadow-xl flex items-center justify-between hover:bg-[#f96519]/90 active:bg-[#f96519]/50 duration-300 cursor-pointer`} key={i} >
+                            <Link to={`a/${alert.alert_uuid}`} className={`${(i % 2 === 0) ? "bg-[#f96519]" : "bg-[#fa8d55]"} text-white rounded-xl px-4 py-2 shadow-xl flex items-center justify-between hover:bg-[#f96519]/90 active:bg-[#f96519]/50 duration-300 cursor-pointer`} key={i} >
                                 <div className="flex flex-row items-center gap-5">
                                     <div className="font-normal text-md">
                                         {i + 1}.

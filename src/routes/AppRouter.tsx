@@ -7,6 +7,7 @@ import NotFound from "../pages/NotFound";
 import Bypass from "../components/Bypass";
 import Manage from "../pages/Manage";
 import AboutUs from "../pages/AboutUs";
+import UpdateAlertInfo from "../pages/UpdateAlertInfo";
 
 function AppRouter({ isAuthLoaded }: { isAuthLoaded: boolean }): React.JSX.Element {
     return(
@@ -40,6 +41,14 @@ function AppRouter({ isAuthLoaded }: { isAuthLoaded: boolean }): React.JSX.Eleme
                 element={
                     <AppLayout isAuthLoaded={isAuthLoaded}>
                         <Manage />
+                    </AppLayout>
+                } 
+            />
+            <Route 
+                path={'/manage/b/:boxUUID/a/:alertUUID'} 
+                element={
+                    <AppLayout isAuthLoaded={isAuthLoaded}>
+                        <UpdateAlertInfo />
                     </AppLayout>
                 } 
             />
