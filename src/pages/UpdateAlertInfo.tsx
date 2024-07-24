@@ -64,7 +64,22 @@ function UpdateAlertInfo(): React.JSX.Element {
                 <div className="font-semibold text-white">{t("Update")} - {(alertInfoData.alert_name).charAt(0).toUpperCase() + (alertInfoData.alert_name).slice(1)}</div>
             </div>
             <div className="flex flex-col pb-10">
-                
+                <div className="flex flex-col mt-3 gap-1 px-4">  
+                    <div className="mb-4">
+                        <div className="text-lg font-semibold">
+                            {t("Information")} 
+                        </div>
+                    </div> 
+                    <div className="grid grid-cols-4 mb-4 text-md gap-y-3">
+                        <div className="w-full col-span-2">
+                            <span className="font-medium">Name : </span>{""}
+                        </div>
+                        <div className="w-full col-span-2">
+                            <span className="font-medium">Added At : </span>{""}
+                        </div>
+                        
+                    </div>
+                </div>
             </div>
         </>
     );
