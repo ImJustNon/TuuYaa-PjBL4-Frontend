@@ -7,7 +7,7 @@ import moment from "moment";
 import { useDisclosure } from "@chakra-ui/react";
 import DeleteCabinetModal from "../components/DeleteCabinetModal";
 import RenameCabinetModal from "../components/RenameCabinetModal";
-
+import AddAlertTimeModal from "../components/AddAlertTimeModal";
 
 function Manage(): React.JSX.Element {
     const { t, i18n } = useTranslation();
@@ -35,6 +35,11 @@ function Manage(): React.JSX.Element {
     const renameCabinetModalIsOpen = renameCabinetModalDisclosure.isOpen;
     const renameCabinetModalOnOpen = renameCabinetModalDisclosure.onOpen;
     const renameCabinetModalOnClose = renameCabinetModalDisclosure.onClose;
+
+    const addAlertTimeModalDisclosure = useDisclosure();
+    const addAlertTimeModalIsOpen = addAlertTimeModalDisclosure.isOpen;
+    const addAlertTimeModalOnOpen = addAlertTimeModalDisclosure.onOpen;
+    const addAlertTimeModalOnClose = addAlertTimeModalDisclosure.onClose;
 
     useEffect(() =>{
         (async(): Promise<void> =>{
@@ -116,32 +121,27 @@ function Manage(): React.JSX.Element {
                 <div className="font-semibold text-white">{t("Manage")} - {cabinetName}</div>
             </div>
             <div className="flex flex-col pb-10">
-                <div className="p-4 mx-auto">
+                {/* <div className="p-4 mx-auto">
                     <img className="rounded-lg" src="https://placehold.co/600x400" alt="img" />
-                </div>
+                </div> */}
                 <div className="flex flex-col mt-3 gap-1 px-4">    
                     <div className="mb-4">
                         <div className="text-lg font-semibold">
                             {t("Information")} 
                         </div>
                     </div>    
-                    <div className="grid grid-cols-4 mb-4 text-md">
+                    <div className="grid grid-cols-4 mb-4 text-md gap-y-3">
                         <div className="w-full col-span-2">
                             <span className="font-medium">Name : </span>{cabinetName}
                         </div>
-                        <div className="w-full col-span-2">
-                            <span className="font-medium">Owner : </span>{cabinetOwner}
-                        </div>
-                        <div className="w-full col-span-2">
-                            <span className="font-medium">Slot Count : </span>{cabinetSlotCount}
+                        <div className="w-full flex flex-row col-span-2">
+                            <span className="font-medium mr-2">Key : </span>
+                            <div className="bg-neutral-200 rounded-lg px-2 cursor-pointer hover:bg-neutral-300 active:bg-neutral-400 duration-300 text-md font-normal" onClick={() => getCabinetKey()}>{isShowKey ? (<span className="text-xs">{cabinetKey}</span>) : "Show"}</div>
                         </div>
                         <div className="w-full col-span-2">
                             <span className="font-medium">Added At : </span>{cabinetCreateAt}
                         </div>
-                        <div className="w-full flex flex-row col-span-4">
-                            <span className="font-medium mr-2">Key : </span>
-                            <div className="bg-neutral-200 rounded-lg px-2 cursor-pointer hover:bg-neutral-300 active:bg-neutral-400 duration-300 text-md font-normal" onClick={() => getCabinetKey()}>{isShowKey ? (<span className="text-xs">{cabinetKey}</span>) : "Show"}</div>
-                        </div>
+                        
                     </div>
                     <div className="mb-4">
                         <div className="text-lg font-semibold">
@@ -149,7 +149,7 @@ function Manage(): React.JSX.Element {
                         </div>
                     </div>
                     <div className="grid grid-cols-3 gap-3 mb-4">
-                        <div className="w-full aspect-square bg-neutral-200 grid place-items-center rounded-xl hover:bg-neutral-300 active:bg-neutral-400 duration-300">
+                        <div className="w-full aspect-square bg-neutral-200 grid place-items-center rounded-xl shadow-xl hover:bg-neutral-300 active:bg-neutral-400 duration-300" onClick={() => addAlertTimeModalOnOpen()}>
                             <div className="flex flex-col items-center w-full gap-2 cursor-pointer">
                                 <span className="text-2xl">
                                     <i className="fa-solid fa-clock"></i>
@@ -159,7 +159,7 @@ function Manage(): React.JSX.Element {
                                 </div>
                             </div>
                         </div>
-                        <div className="w-full aspect-square bg-neutral-200 grid place-items-center rounded-xl hover:bg-neutral-300 active:bg-neutral-400 duration-300" onClick={() => renameCabinetModalOnOpen()} >
+                        <div className="w-full aspect-square bg-neutral-200 grid place-items-center rounded-xl shadow-xl hover:bg-neutral-300 active:bg-neutral-400 duration-300" onClick={() => renameCabinetModalOnOpen()} >
                             <div className="flex flex-col items-center w-full gap-2 cursor-pointer">
                                 <span className="text-2xl">
                                     <i className="fa-solid fa-tools"></i>
@@ -169,7 +169,7 @@ function Manage(): React.JSX.Element {
                                 </div>
                             </div>
                         </div>
-                        <div className="w-full aspect-square bg-neutral-200 grid place-items-center rounded-xl hover:bg-neutral-300 active:bg-neutral-400 duration-300" onClick={() => deleteCabinetModalOnOpen()} >
+                        <div className="w-full aspect-square bg-neutral-200 grid place-items-center rounded-xl shadow-xl hover:bg-neutral-300 active:bg-neutral-400 duration-300" onClick={() => deleteCabinetModalOnOpen()} >
                             <div className="flex flex-col items-center w-full gap-2 cursor-pointer">
                                 <span className="text-2xl">
                                     <i className="fa-solid fa-trash"></i>
@@ -191,21 +191,24 @@ function Manage(): React.JSX.Element {
                     {cabinetAlertList.length > 0 ? ( // alert list
                         <div className="flex flex-col gap-3"> 
                             {cabinetAlertList?.map((alert: any, i: number) => (
-                                <div className={`${(i % 2 === 0) ? "bg-[#f96519]" : "bg-[#fa8d55]"} text-white rounded-xl px-4 py-2 shadow flex items-center justify-between hover:bg-[#f96519]/90 active:bg-[#f96519]/50 duration-300 cursor-pointer`} key={i}>
+                            <Link to={`/manage/b/${boxUUID}/a/${alert.alert_uuid}`} className={`${(i % 2 === 0) ? "bg-[#f96519]" : "bg-[#fa8d55]"} text-white rounded-xl px-4 py-2 shadow-xl flex items-center justify-between hover:bg-[#f96519]/90 active:bg-[#f96519]/50 duration-300 cursor-pointer`} key={i} >
                                 <div className="flex flex-row items-center gap-5">
                                     <div className="font-normal text-md">
                                         {i + 1}.
                                     </div>
                                     <div className="flex flex-col gap-1"> 
-                                        <div className="font-medium">
-                                            {alert.alert_name}
+                                        <div className="font-normal text-lg">
+                                            {(alert.alert_name)}
                                         </div>
                                         <div className="font-sm">
                                             {(alert.alert_time).split("T")[0].replaceAll("-", "/")} | {(alert.alert_time).split("T")[1].split(".")[0].slice(1, 5)}    {/* Alert Date | Alert Time*/}
                                         </div>
-                                        <div className="w-fit flex flex-row gap-1">
+                                        <div className="w-fit flex flex-row gap-2">
                                             {(alert.alert_slot).map((slot: string, i: number) => (
-                                                <div key={i} className="py-[2px] px-4 bg-[#ebae2c] rounded-md text-center">{slot}</div>
+                                                <div key={i} className="py-[2px] px-4 bg-[#ebdb2c] shadow-xl rounded-md text-center">{slot}</div>
+                                            ))}
+                                            {(alert.meal).map((slot: string, i: number) => (
+                                                <div key={i} className="py-[2px] px-2 bg-[#eba82c] shadow-xl rounded-md text-center">{slot.split("_").map(str => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()).join(" ")}</div>
                                             ))}
                                         </div>
                                     </div>
@@ -215,9 +218,9 @@ function Manage(): React.JSX.Element {
                                         <i className="fa-solid fa-chevron-right"></i>
                                     </span>
                                 </div>
-                            </div>
+                            </Link>
                         ))}
-                    </div>
+                        </div>
                     ) : (
                         <div className="flex flex-col gap-4 mb-4">
                             <div className="text-center py-8">
@@ -230,6 +233,7 @@ function Manage(): React.JSX.Element {
             </div>
             <DeleteCabinetModal isOpen={deleteCabinetModalIsOpen} onOpen={deleteCabinetModalOnOpen} onClose={deleteCabinetModalOnClose} boxUUID={boxUUID} />
             <RenameCabinetModal isOpen={renameCabinetModalIsOpen} onOpen={renameCabinetModalOnOpen} onClose={renameCabinetModalOnClose} boxUUID={boxUUID} refetch={setRefetch} />
+            <AddAlertTimeModal isOpen={addAlertTimeModalIsOpen} onOpen={addAlertTimeModalOnOpen} onClose={addAlertTimeModalOnClose} boxUUID={boxUUID} refetch={setRefetch} />
         </>
     );
 }

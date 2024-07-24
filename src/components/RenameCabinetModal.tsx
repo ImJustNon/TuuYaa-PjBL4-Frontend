@@ -35,7 +35,7 @@ function RenameCabinetModal({ isOpen, onOpen, onClose, boxUUID, refetch }: { isO
                 duration: 1000,
                 isClosable: true
             });
-            refetch(Math.random())
+            refetch(Math.random());
         }
     }
     
