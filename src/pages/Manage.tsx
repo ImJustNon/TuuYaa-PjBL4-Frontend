@@ -8,7 +8,8 @@ import { IconButton, useDisclosure } from "@chakra-ui/react";
 import DeleteCabinetModal from "../components/DeleteCabinetModal";
 import RenameCabinetModal from "../components/RenameCabinetModal";
 import AddAlertTimeModal from "../components/AddAlertTimeModal";
-import { Popover, PopoverTrigger, PopoverContent, PopoverHeader, PopoverBody, PopoverFooter, PopoverArrow, PopoverCloseButton, PopoverAnchor } from '@chakra-ui/react'
+import { Popover, PopoverTrigger, PopoverContent, PopoverHeader, PopoverBody, PopoverFooter, PopoverArrow, PopoverCloseButton, PopoverAnchor } from '@chakra-ui/react';
+import { Menu, MenuButton, MenuList, MenuItem, MenuItemOption, MenuGroup, MenuOptionGroup, MenuDivider } from '@chakra-ui/react';
 
 function Manage(): React.JSX.Element {
     const { t, i18n } = useTranslation();
@@ -191,7 +192,7 @@ function Manage(): React.JSX.Element {
                     {cabinetAlertList.length > 0 ? ( // alert list
                         <div className="flex flex-col gap-3"> 
                         {cabinetAlertList?.map((alert: any, i: number) => (
-                            <div className={`${(i % 2 === 0) ? "bg-[#f96519]" : "bg-[#fa8d55]"} text-white group rounded-xl px-5 py-2 shadow-xl flex flex-col gap-5 items-center justify-between hover:bg-[#f96519]/90 active:bg-[#f96519]/50 duration-300 cursor-pointer`} key={i} >
+                            <Link to={`a/${alert.alert_uuid}`} className={`${(i % 2 === 0) ? "bg-[#f96519]" : "bg-[#fa8d55]"} text-white group rounded-xl px-5 py-2 shadow-xl flex flex-col gap-5 items-center justify-between hover:bg-[#f96519]/90 active:bg-[#f96519]/50 duration-300 cursor-pointer`} key={i} >
                                 <div className="flex flex-row items-center w-full gap-5">
                                     <div className="font-normal text-md">
                                         {i + 1}.
@@ -216,11 +217,11 @@ function Manage(): React.JSX.Element {
                                         <i className="fa-solid fa-chevron-right group-hover:rotate-90 duration-300"></i>
                                     </div>
                                 </div>
-                            </div>
+                            </Link>
                             
                         ))}
                         </div>
-                    ) : (
+                    ) : ( 
                         <div className="flex flex-col gap-4 mb-4">
                             <div className="text-center py-8">
                                 <div className="text-lg">{t("No Item Found")}</div>
