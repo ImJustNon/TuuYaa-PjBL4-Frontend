@@ -1,15 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { OnResultFunction, QrReader } from "react-qr-reader";
 import { useDisclosure, useEditable, useToast } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import AddNewModal from "../components/AddNewModal";
 import { useTranslation } from "react-i18next";
 
 function Scan(): React.JSX.Element {
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
     const [qrResultData, setQrResultData] = useState<string>("");
     const { isOpen, onOpen, onClose } = useDisclosure();
 
+    const key = queryParams.get("key");
+
     const { t, i18n } = useTranslation();
+
+    useEffect(() =>{
+        if(key){
+            setQrResultData(key);
+            onOpen();
+        }
+    }, [key]);
 
     function onResult(result: any){
         const text: string = result.text ?? "";
@@ -17,11 +28,10 @@ function Scan(): React.JSX.Element {
         onOpen();
     }
 
-
     return (
       <>
         <div className="bg-[#f76418] p-4 flex items-center gap-3">
-            <Link className="flex items-center" to={"/"}>
+            <Link className="flex items-center duration-300 hover:scale-110" to={"/"}>
                 <div className="text-white text-xl">
                     <span>
                         <i className="fa-solid fa-angle-left"></i>

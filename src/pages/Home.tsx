@@ -114,7 +114,7 @@ function Home(): React.JSX.Element {
                 {/* Top menu btn */}
                 <div className="flex justify-between items-center">
                     <div className="relative">
-                        <div className="flex flex-row items-center bg-white shadow-xl rounded-full p-2 !px-4 gap-2 cursor-pointer hover:text-[#f76418] duration-300" onClick={() => setShowLanguageSelector(prev => !prev)}>
+                        <div className="flex flex-row items-center bg-white shadow-xl rounded-full p-2 !px-4 gap-2 cursor-pointer hover:text-[#f76418] duration-300 hover:scale-105" onClick={() => setShowLanguageSelector(prev => !prev)}>
                             <i className="fa-solid fa-earth-asia fa-1x"></i>
                             <span className="text-sm">{t("Languages")}</span> 
                         </div>
@@ -137,7 +137,7 @@ function Home(): React.JSX.Element {
                             </div>
                         </div>
                     </div>
-                    <div className="flex flex-row bg-white shadow-xl rounded-full p-2 gap-2 cursor-pointer hover:text-[#f76418] duration-300" onClick={() => signout()}>
+                    <div className="flex flex-row bg-white shadow-xl rounded-full p-2 gap-2 cursor-pointer hover:text-[#f76418] duration-300 hover:scale-105" onClick={() => signout()}>
                         <i className="fa-solid fa-right-from-bracket fa-1x"></i>
                     </div>
                 </div>
@@ -163,7 +163,7 @@ function Home(): React.JSX.Element {
             {/* Scan btn zone */}
             <div className="flex justify-center -mt-7 mb-4">
                 <Link to="/scan">
-                    <div className="flex items-center bg-[#add33f] p-1 shadow-xl rounded-full hover:bg-[#90b035] active:bg-[#809c2f] duration-300">
+                    <div className="flex items-center bg-[#add33f] p-1 shadow-xl rounded-full hover:bg-[#90b035] active:bg-[#809c2f] hover:scale-105 duration-300">
                         <div className="bg-white h-12 w-12 rounded-full grid place-items-center">
                             <span>
                                 <i className="fa-solid fa-qrcode fa-xl"></i>
@@ -183,7 +183,7 @@ function Home(): React.JSX.Element {
                 <div className="grid grid-cols-3 gap-3"> {/* ถ้า User ได้เพิ่มกล่องในระบบอยู่เเล้วให้เเสดงรายการ */}
                     {cabinetList?.map((cabinet: any, i: number) => (
                         <Link to={`/manage/b/${cabinet.box_uuid}`} key={i}>
-                            <div className="w-full aspect-square bg-neutral-200 grid place-items-center shadow-xl rounded-xl hover:bg-neutral-300 active:bg-neutral-400 duration-300">
+                            <div className="w-full aspect-square bg-neutral-200 grid place-items-center shadow-xl rounded-xl hover:bg-neutral-300 active:bg-neutral-400 duration-300 hover:scale-105">
                                 <div className="flex flex-col items-center w-full gap-2">
                                     <span className="text-2xl">
                                         <i className="fa-solid fa-pills"></i>

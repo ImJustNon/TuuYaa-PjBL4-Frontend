@@ -92,21 +92,11 @@ function AddNewModal({ isOpen, onOpen, onClose, id }: { isOpen: boolean, onOpen:
                                         onChange={(event: React.ChangeEvent<HTMLInputElement>) => setName(event.target.value)}
                                     />
                                 </div>
-                                <Button 
-                                    borderRadius={"5px"}
-                                    color={"white"} 
-                                    bgColor={"#f96519"}
-                                    _hover={{
-                                        bgColor: "#fc8447"
-                                    }}
-                                    fontSize={"20px"}
-                                    fontWeight={200}
-                                    size='sm'
-                                    className="font-fchome"
-                                    onClick={async() => await handleSubmit()}
-                                >
-                                    {t("Add")}
-                                </Button>
+                                <div className="flex flex-row justify-center">
+                                    <div className="text-center text-white bg-[#f96519] hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 cursor-pointer w-full py-2 rounded-lg" onClick={async() => await handleSubmit()}>
+                                        {t("Add")}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </ModalBody>
