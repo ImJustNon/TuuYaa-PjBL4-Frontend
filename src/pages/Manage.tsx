@@ -202,7 +202,7 @@ function Manage(): React.JSX.Element {
                                             {(alert.alert_name)}
                                         </div>
                                         <div className="font-sm">
-                                            {(alert.alert_time).split("T")[0].replaceAll("-", "/")} | {(alert.alert_time).split("T")[1].split(".")[0].slice(1, 5)}    {/* Alert Date | Alert Time*/}
+                                            {String(moment(alert.alert_time))}
                                         </div>
                                         <div className="w-fit flex flex-row gap-2">
                                             {(alert.alert_slot).map((slot: string, i: number) => (
