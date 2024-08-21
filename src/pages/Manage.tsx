@@ -10,6 +10,8 @@ import RenameCabinetModal from "../components/RenameCabinetModal";
 import AddAlertTimeModal from "../components/AddAlertTimeModal";
 import { Popover, PopoverTrigger, PopoverContent, PopoverHeader, PopoverBody, PopoverFooter, PopoverArrow, PopoverCloseButton, PopoverAnchor } from '@chakra-ui/react';
 import { Menu, MenuButton, MenuList, MenuItem, MenuItemOption, MenuGroup, MenuOptionGroup, MenuDivider } from '@chakra-ui/react';
+import { mapChannel } from "../utils/mapChannel";
+import { MapChannel } from "../types/types";
 
 function Manage(): React.JSX.Element {
     const { t, i18n } = useTranslation();
@@ -206,7 +208,7 @@ function Manage(): React.JSX.Element {
                                         </div>
                                         <div className="w-fit flex flex-row gap-2">
                                             {(alert.alert_slot).map((slot: string, i: number) => (
-                                                <div key={i} className="py-[2px] px-4 bg-[#ebdb2c] shadow-xl rounded-md text-center">{slot}</div>
+                                                <div key={i} className="py-[2px] px-4 bg-[#ebdb2c] shadow-xl rounded-md text-center">{mapChannel(slot as MapChannel)}</div>
                                             ))}
                                             {(alert.meal).map((slot: string, i: number) => (
                                                 <div key={i} className="py-[2px] px-2 bg-[#eba82c] shadow-xl rounded-md text-center">{slot.split("_").map(str => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()).join(" ")}</div>

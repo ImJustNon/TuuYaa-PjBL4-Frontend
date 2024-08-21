@@ -5,6 +5,8 @@ import { Link, Params, useParams } from "react-router-dom";
 import config from "../config/config";
 import { Checkbox, CreateToastFnReturn, Input, useToast } from "@chakra-ui/react";
 import moment from "moment";
+import { mapChannel } from "../utils/mapChannel";
+import { MapChannel } from "../types/types";
 
 interface AlertInfoData {
     id: number;
@@ -207,6 +209,10 @@ function UpdateAlertInfo(): React.JSX.Element {
         })();
     }
 
+    function handleDelete(){
+
+    }
+
     return (
         <>
             <div className="bg-[#f76418] p-4 flex items-center gap-3">
@@ -232,7 +238,7 @@ function UpdateAlertInfo(): React.JSX.Element {
                         </div>
                         <div className="flex flex-col gap-2 col-span-4 w-full">
                             <div className="col-span-4 text-center font-semibold text-xl bg-yellow-300 w-fit px-5 py-2 rounded-lg mx-auto">
-                                {alertInfoData.alert_slot.join(",")}
+                                {mapChannel(alertInfoData.alert_slot.join("") as MapChannel)}
                             </div>
                             <div className="col-span-4 flex flex-row justify-center gap-2">
                                 {alertInfoData.meal.map((m: string, i: number) =>(
@@ -314,52 +320,55 @@ function UpdateAlertInfo(): React.JSX.Element {
                             <div className="col-span-2 font-medium text-md ">Slot</div>
                             <div className="col-span-4 flex flex-col gap-2">
                                 <div className="flex flex-row justify-center gap-2">
-                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "A1" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("A1")}>A1</div>
-                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "B1" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("B1")}>B1</div>
-                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "C1" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("C1")}>C1</div>
-                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "D1" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("D1")}>D1</div>
+                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "A1" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("A1")}>{mapChannel("A1")}</div>
+                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "B1" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("B1")}>{mapChannel("B1")}</div>
+                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "C1" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("C1")}>{mapChannel("C1")}</div>
+                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "D1" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("D1")}>{mapChannel("D1")}</div>
                                 </div>
                                 <div className="flex flex-row justify-center gap-2">
-                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "A2" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("A2")}>A2</div>
-                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "B2" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("B2")}>B2</div>
-                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "C2" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("C2")}>C2</div>
-                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "D2" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("D2")}>D2</div>
+                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "A2" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("A2")}>{mapChannel("A2")}</div>
+                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "B2" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("B2")}>{mapChannel("B2")}</div>
+                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "C2" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("C2")}>{mapChannel("C2")}</div>
+                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "D2" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("D2")}>{mapChannel("D2")}</div>
                                 </div>
                                 <div className="flex flex-row justify-center gap-2">
-                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "A3" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("A3")}>A3</div>
-                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "B3" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("B3")}>B3</div>
-                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "C3" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("C3")}>C3</div>
-                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "D3" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("D3")}>D3</div>
+                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "A3" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("A3")}>{mapChannel("A3")}</div>
+                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "B3" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("B3")}>{mapChannel("B3")}</div>
+                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "C3" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("C3")}>{mapChannel("C3")}</div>
+                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "D3" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("D3")}>{mapChannel("D3")}</div>
                                 </div>
                                 <div className="flex flex-row justify-center gap-2">
-                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "A4" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("A4")}>A4</div>
-                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "B4" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("B4")}>B4</div>
-                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "C4" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("C4")}>C4</div>
-                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "D4" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("D4")}>D4</div>
+                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "A4" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("A4")}>{mapChannel("A4")}</div>
+                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "B4" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("B4")}>{mapChannel("B4")}</div>
+                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "C4" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("C4")}>{mapChannel("C4")}</div>
+                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "D4" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("D4")}>{mapChannel("D4")}</div>
                                 </div>
                                 <div className="flex flex-row justify-center gap-2">
-                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "A5" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("A5")}>A5</div>
-                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "B5" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("B5")}>B5</div>
-                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "C5" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("C5")}>C5</div>
-                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "D5" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("D5")}>D5</div>
+                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "A5" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("A5")}>{mapChannel("A5")}</div>
+                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "B5" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("B5")}>{mapChannel("B5")}</div>
+                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "C5" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("C5")}>{mapChannel("C5")}</div>
+                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "D5" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("D5")}>{mapChannel("D5")}</div>
                                 </div>
                                 <div className="flex flex-row justify-center gap-2">
-                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "A6" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("A6")}>A6</div>
-                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "B6" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("B6")}>B6</div>
-                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "C6" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("C6")}>C6</div>
-                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "D6" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("D6")}>D6</div>
+                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "A6" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("A6")}>{mapChannel("A6")}</div>
+                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "B6" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("B6")}>{mapChannel("B6")}</div>
+                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "C6" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("C6")}>{mapChannel("C6")}</div>
+                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "D6" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("D6")}>{mapChannel("D6")}</div>
                                 </div>
                                 <div className="flex flex-row justify-center gap-2">
-                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "A7" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("A7")}>A7</div>
-                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "B7" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("B7")}>B7</div>
-                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "C7" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("C7")}>C7</div>
-                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "D7" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("D7")}>D7</div>
+                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "A7" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("A7")}>{mapChannel("A7")}</div>
+                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "B7" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("B7")}>{mapChannel("B7")}</div>
+                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "C7" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("C7")}>{mapChannel("C7")}</div>
+                                    <div className={`py-1 px-5 text-white text-center shadow-lg rounded-md w-full cursor-pointer hover:bg-[#f96519]/70 active:bg-[#f96519]/50 duration-300 ${selectedSlot.length !== 0 && selectedSlot !== "D7" ? "bg-[#cccc]" : "bg-[#f76418]"}`} onClick={() => setSelectedSlot("D7")}>{mapChannel("D7")}</div>
                                 </div>
                             </div>
                         </div>
-                        <div className="flex flex-row justify-center mt-3">
-                            <div className="px-32 py-3 bg-[#f76418] hover:bg-[#f96519]/70 active:bg-[#f96519]/50 rounded-xl shadow-xl text-white font-medium text-md cursor-pointer duration-300 hover:scale-105" onClick={() => handleSubmit()}>  
-                                Submit
+                        <div className="flex flex-row justify-center gap-2 mt-5 w-full">
+                            <div className="px-32 py-3 bg-[#f96519] hover:bg-[#f96519]/70 active:bg-[#f96519]/50 rounded-xl shadow-xl text-white font-medium text-md cursor-pointer duration-300 hover:scale-105" onClick={() => handleSubmit()}>  
+                            <i className="fa-solid fa-repeat"></i> Update
+                            </div>
+                            <div className="px-5 py-3 bg-[#f93319] hover:bg-[#f93319]/70 active:bg-[#f93319]/50 rounded-xl shadow-xl text-white font-medium text-md cursor-pointer duration-300 hover:scale-105" onClick={() => handleDelete()}>  
+                                <i className="fa-solid fa-trash"></i>
                             </div>
                         </div>
                     </div>

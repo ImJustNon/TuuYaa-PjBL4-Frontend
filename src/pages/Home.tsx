@@ -41,7 +41,7 @@ function Home(): React.JSX.Element {
             axios.defaults.withCredentials = true;
             const response: AxiosResponse = await axios.get(`${config.backend.api.baseurl}/api/v1/user/info`);
             const responseData: any = response.data;
-            setUserProfileUrl(responseData.data?.user_profile_url);
+            // setUserProfileUrl(responseData.data?.user_profile_url);
             setUserName(responseData.data?.user_name);
         })();
         (async(): Promise<void> =>{ // box list
@@ -127,14 +127,14 @@ function Home(): React.JSX.Element {
                                 <img className="w-5 h-5 rounded-full" src={lang_en} alt="en-lang" />
                                 <span className="text-sm font-medium">English (US-EN)</span> 
                             </div>
-                            <div className="flex flex-row gap-2 items-center self-start w-full hover:text-[#f76418] duration-300" onClick={() => switchLanguage("kh")}>
+                            {/* <div className="flex flex-row gap-2 items-center self-start w-full hover:text-[#f76418] duration-300" onClick={() => switchLanguage("kh")}>
                                 <img className="w-5 h-5 rounded-full" src={lang_kh} alt="kh-lang" />
                                 <span className="text-sm font-medium">ខ្មែរ (KH)</span> 
                             </div>
                             <div className="flex flex-row gap-2 items-center self-start w-full hover:text-[#f76418] duration-300" onClick={() => switchLanguage("skoy")}>
                                 <img className="w-5 h-5 rounded-full" src={lang_skoy} alt="skoy-lang" />
                                 <span className="text-sm font-medium">ภ๊ษ๊สก๊อษ์ย (SKOY)</span> 
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     <div className="flex flex-row bg-white shadow-xl rounded-full p-2 gap-2 cursor-pointer hover:text-[#f76418] duration-300 hover:scale-105" onClick={() => signout()}>
