@@ -12,6 +12,7 @@ import { Popover, PopoverTrigger, PopoverContent, PopoverHeader, PopoverBody, Po
 import { Menu, MenuButton, MenuList, MenuItem, MenuItemOption, MenuGroup, MenuOptionGroup, MenuDivider } from '@chakra-ui/react';
 import { mapChannel } from "../utils/mapChannel";
 import { MapChannel } from "../types/types";
+import UpdateLineNotifyModal from "../components/UpdateLineNotifyModal";
 
 function Manage(): React.JSX.Element {
     const { t, i18n } = useTranslation();
@@ -26,6 +27,7 @@ function Manage(): React.JSX.Element {
     const [cabinetOwner, setCabinetOwner] = useState<string>("Loading...");
     const [cabinetSlotCount, setCabinetSlotCount] = useState<string>("Loading...");
     const [cabinetCreateAt, setCabinetCreateAt] = useState<string>("Loading...");
+    const [cabinetLineNotifyStatus, setCabinetLineNotifyStatus] = useState<string>("Loading...");
     const [cabinetKey, setCabinetKey] = useState<string>("Loading...");
 
     const [cabinetAlertList, setCabinetAlertList] = useState<[]>([]);
@@ -45,6 +47,11 @@ function Manage(): React.JSX.Element {
     const addAlertTimeModalOnOpen = addAlertTimeModalDisclosure.onOpen;
     const addAlertTimeModalOnClose = addAlertTimeModalDisclosure.onClose;
 
+    const updateLineNotifyModalDisclosure = useDisclosure();
+    const updateLineNotifyModalIsOpen = updateLineNotifyModalDisclosure.isOpen;
+    const updateLineNotifyModalOnOpen = updateLineNotifyModalDisclosure.onOpen;
+    const updateLineNotifyModalOnClose = updateLineNotifyModalDisclosure.onClose;
+
     useEffect(() =>{
         (async(): Promise<void> =>{
             axios.defaults.withCredentials = true;
@@ -59,6 +66,7 @@ function Manage(): React.JSX.Element {
             if(responseCabinetInfoData.status === "OK"){
                 setCabinetName(responseCabinetInfoData.data?.box_name);
                 setCabinetCreateAt(moment(responseCabinetInfoData.data?.create_at).format("MMM Do YYYY"));
+                setCabinetLineNotifyStatus(responseCabinetInfoData.data?.line_notify_token ? "Activated" : "Not Activated");
             }
             const responseUserInfo: AxiosResponse = await axios.get(`${config.backend.api.baseurl}/api/v1/user/info`, {
                 headers: {
@@ -142,8 +150,11 @@ function Manage(): React.JSX.Element {
                             <span className="font-medium mr-2">Key : </span>
                             <div className="bg-neutral-200 rounded-lg px-2 cursor-pointer hover:bg-neutral-300 active:bg-neutral-400 duration-300 text-md font-normal" onClick={() => getCabinetKey()}>{isShowKey ? (<span className="text-xs">{cabinetKey}</span>) : "Show"}</div>
                         </div>
-                        <div className="w-full col-span-2">
+                        <div className="w-full col-span-4">
                             <span className="font-medium">Added At : </span>{cabinetCreateAt}
+                        </div>
+                        <div className="w-full col-span-2">
+                            <span className={`font-medium`}>LINE Notify : </span><span className={`${cabinetLineNotifyStatus === "Activated" ? "text-green-500" : "text-yellow-500"}`}>{cabinetLineNotifyStatus}</span>
                         </div>
                     </div>
                     <div className="mb-4">
@@ -151,7 +162,7 @@ function Manage(): React.JSX.Element {
                             {t("Menu")} 
                         </div>
                     </div>
-                    <div className="grid grid-cols-3 gap-3 mb-4">
+                    <div className="grid grid-cols-3 gap-3 gap-y-5 mb-4">
                         <div className="w-full aspect-square bg-neutral-200 grid place-items-center rounded-xl shadow-xl hover:bg-neutral-300 active:bg-neutral-400 hover:scale-105 duration-300" onClick={() => addAlertTimeModalOnOpen()}>
                             <div className="flex flex-col items-center w-full gap-2 cursor-pointer">
                                 <span className="text-2xl">
@@ -179,6 +190,16 @@ function Manage(): React.JSX.Element {
                                 </span>
                                 <div className="font-semibold">
                                     Delete
+                                </div>
+                            </div>
+                        </div>
+                        <div className="w-full aspect-square bg-neutral-200 grid place-items-center rounded-xl shadow-xl hover:bg-neutral-300 active:bg-neutral-400 hover:scale-105 duration-300" onClick={() => updateLineNotifyModalOnOpen()} >
+                            <div className={`flex flex-col items-center w-full gap-2 cursor-pointer ${cabinetLineNotifyStatus === "Activated" ? "text-green-500" : ""}`}>
+                                <span className="text-3xl">
+                                    <i className="fa-brands fa-line"></i>
+                                </span>
+                                <div className="font-semibold text-center">
+                                    LINE Notify
                                 </div>
                             </div>
                         </div>
@@ -236,6 +257,7 @@ function Manage(): React.JSX.Element {
             <DeleteCabinetModal isOpen={deleteCabinetModalIsOpen} onOpen={deleteCabinetModalOnOpen} onClose={deleteCabinetModalOnClose} boxUUID={boxUUID} />
             <RenameCabinetModal isOpen={renameCabinetModalIsOpen} onOpen={renameCabinetModalOnOpen} onClose={renameCabinetModalOnClose} boxUUID={boxUUID} refetch={setRefetch} />
             <AddAlertTimeModal isOpen={addAlertTimeModalIsOpen} onOpen={addAlertTimeModalOnOpen} onClose={addAlertTimeModalOnClose} boxUUID={boxUUID} refetch={setRefetch} />
+            <UpdateLineNotifyModal isOpen={updateLineNotifyModalIsOpen} onOpen={updateLineNotifyModalOnOpen} onClose={updateLineNotifyModalOnClose} boxUUID={boxUUID} refetch={setRefetch} />
         </>
     );
 }
