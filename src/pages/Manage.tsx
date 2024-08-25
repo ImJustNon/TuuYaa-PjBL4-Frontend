@@ -164,7 +164,7 @@ function Manage(): React.JSX.Element {
                     </div>
                     <div className="grid grid-cols-3 gap-3 gap-y-5 mb-4">
                         <div className="w-full aspect-square bg-neutral-200 grid place-items-center rounded-xl shadow-xl hover:bg-neutral-300 active:bg-neutral-400 hover:scale-105 duration-300" onClick={() => addAlertTimeModalOnOpen()}>
-                            <div className="flex flex-col items-center w-full gap-2 cursor-pointer">
+                            <div className="flex flex-col items-center w-full gap-2 cursor-pointer text-[#0851fc]/70">
                                 <span className="text-2xl">
                                     <i className="fa-solid fa-clock"></i>
                                 </span>
@@ -174,7 +174,7 @@ function Manage(): React.JSX.Element {
                             </div>
                         </div>
                         <div className="w-full aspect-square bg-neutral-200 grid place-items-center rounded-xl shadow-xl hover:bg-neutral-300 active:bg-neutral-400 hover:scale-105 duration-300" onClick={() => renameCabinetModalOnOpen()} >
-                            <div className="flex flex-col items-center w-full gap-2 cursor-pointer">
+                            <div className="flex flex-col items-center w-full gap-2 cursor-pointer text-[#f96519]/70">
                                 <span className="text-2xl">
                                     <i className="fa-solid fa-tools"></i>
                                 </span>
@@ -184,7 +184,7 @@ function Manage(): React.JSX.Element {
                             </div>
                         </div>
                         <div className="w-full aspect-square bg-neutral-200 grid place-items-center rounded-xl shadow-xl hover:bg-neutral-300 active:bg-neutral-400 hover:scale-105 duration-300" onClick={() => deleteCabinetModalOnOpen()} >
-                            <div className="flex flex-col items-center w-full gap-2 cursor-pointer">
+                            <div className="flex flex-col items-center w-full gap-2 cursor-pointer text-error">
                                 <span className="text-2xl">
                                     <i className="fa-solid fa-trash"></i>
                                 </span>

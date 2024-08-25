@@ -68,6 +68,38 @@ function UpdateLineNotifyModal({ isOpen, onOpen, onClose, boxUUID, refetch }: { 
     async function handleDeactivated(){
         try {
             axios.defaults.withCredentials = true;
+            const response: AxiosResponse = await axios.post(`${config.backend.api.baseurl}/api/v1/box/deactivatelinenotify`, {
+                boxUUID: boxUUID
+            }, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+            const responseData: any = response.data;
+            if(responseData.status === "FAIL"){
+                console.log(responseData);
+                onClose();
+                toast({
+                    status: "error",
+                    description: responseData.message,
+                    position: "top",
+                    duration: 1000,
+                    isClosable: true
+                });
+                return;
+            }
+            if(responseData.status === "OK"){
+                onClose();
+                toast({
+                    status: "success",
+                    description: "Update Success",
+                    position: "top",
+                    duration: 1000,
+                    isClosable: true
+                });
+                refetch(Math.random());
+                return;
+            }
         }
         catch(e){
             onClose();
