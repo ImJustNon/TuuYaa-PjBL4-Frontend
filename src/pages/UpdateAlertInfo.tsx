@@ -3,10 +3,11 @@ import React, { useEffect, useState } from "react"
 import { useTranslation } from "react-i18next";
 import { Link, Params, useParams } from "react-router-dom";
 import config from "../config/config";
-import { Checkbox, CreateToastFnReturn, Input, useToast } from "@chakra-ui/react";
+import { Checkbox, CreateToastFnReturn, Input, useDisclosure, useToast } from "@chakra-ui/react";
 import moment from "moment";
 import { mapChannel } from "../utils/mapChannel";
 import { MapChannel } from "../types/types";
+import DeleteAlertModal from "../components/DeleteAlertModal";
 
 interface AlertInfoData {
     id: number;
@@ -209,9 +210,10 @@ function UpdateAlertInfo(): React.JSX.Element {
         })();
     }
 
-    function handleDelete(){
-
-    }
+    const deleteAlertDisclosure = useDisclosure();
+    const deleteAlertDisclosureOnOpen = deleteAlertDisclosure.onOpen;
+    const deleteAlertDisclosureIsOpen = deleteAlertDisclosure.isOpen;
+    const deleteAlertDisclosureOnClose = deleteAlertDisclosure.onClose;
 
     return (
         <>
@@ -365,12 +367,13 @@ function UpdateAlertInfo(): React.JSX.Element {
                         </div>
                         <div className="flex flex-row justify-center gap-2 mt-5 w-full">
                             <div className="px-32 py-3 bg-[#f96519] hover:bg-[#f96519]/70 active:bg-[#f96519]/50 rounded-xl shadow-xl text-white font-medium text-md cursor-pointer duration-300 hover:scale-105" onClick={() => handleSubmit()}>  
-                            <i className="fa-solid fa-repeat"></i> Update
+                                <i className="fa-solid fa-repeat"></i> Update
                             </div>
-                            <div className="px-5 py-3 bg-[#f93319] hover:bg-[#f93319]/70 active:bg-[#f93319]/50 rounded-xl shadow-xl text-white font-medium text-md cursor-pointer duration-300 hover:scale-105" onClick={() => handleDelete()}>  
+                            <div className="px-5 py-3 bg-[#f93319] hover:bg-[#f93319]/70 active:bg-[#f93319]/50 rounded-xl shadow-xl text-white font-medium text-md cursor-pointer duration-300 hover:scale-105" onClick={() => deleteAlertDisclosureOnOpen()}>  
                                 <i className="fa-solid fa-trash"></i>
                             </div>
                         </div>
+                        <DeleteAlertModal onOpen={deleteAlertDisclosureOnOpen} isOpen={deleteAlertDisclosureIsOpen} onClose={deleteAlertDisclosureOnClose} boxUUID={boxUUID} alertUUID={alertUUID} />
                     </div>
                 </div>
             </div>
